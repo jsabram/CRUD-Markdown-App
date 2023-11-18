@@ -18,7 +18,9 @@ const App = () => {
 
 	return (
 		<>
-			<Header />
+			<div className='xxl:max-w-[2220px] xxl:mx-auto xxl:overflow-hidden'>
+				<Header />
+			</div>
 		</>
 	);
 };
