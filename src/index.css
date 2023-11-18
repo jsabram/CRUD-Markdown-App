@@ -2,7 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+	--primary-color: #7f39fb;
+	--primary-hover-color: #985eff;
+	--primary-accent-color: #dbb2ff;
+	--dark-gray-100: #35393f;
+	--dark-gray-200: #2b2d31;
+	--dark-gray-300: #1d1f22;
+	--dark-gray-500: #151619;
+	--light-gray: #f5f5f5;
+	--light-gray-100: #5a6069;
+	--text-gray-100: #c1c4cb;
+	--text-gray-200: #7c8187;
+	--white: #ffff;
+	--modal-backdrop-light: #00000083;
+	--modal-backdrop-dark: #ffffff80;
+}
+
 body {
+	background: var(--white);
 	font-family: 'IBM Plex Sans', sans-serif;
 	font-size: 0.875rem;
 	font-size: clamp(
@@ -10,4 +28,8 @@ body {
 		0.8533333333333333rem + 0.10666666666666667vw,
 		1rem
 	);
+}
+
+.dark body {
+	background: var(--dark-gray-500);
 }
