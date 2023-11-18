@@ -12,7 +12,7 @@ const ViewDropdown = () => {
 
 	return (
 		<div
-			className={`absolute -top-[120px] left-1/2 flex flex-col bg-darkGray200 rounded-md text-sm text-white -translate-x-1/2 transition-transform origin-bottom duration-300 ${
+			className={`absolute -top-[120px] left-1/2 flex flex-col bg-darkGray200 rounded-md shadow-md shadow-darkGray500 text-sm text-white -translate-x-1/2 transition-transform origin-bottom duration-300 ${
 				areOptionsOpen ? 'scale-1' : 'scale-0'
 			}`}
 		>
