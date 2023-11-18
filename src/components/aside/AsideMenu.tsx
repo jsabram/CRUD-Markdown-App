@@ -4,6 +4,8 @@ import ColoredButton from '../reusable/ColoredButton';
 import PencilIcon from '../../assets/icons/pencil-icon.svg';
 import AsideLink from './AsideLink';
 import ThemeToggler from './ThemeToggler';
+import IconButton from '../reusable/IconButton';
+import ViewOptions from './ViewOptions';
 
 const dummyMenuLinks = [
 	{
@@ -19,10 +21,14 @@ const dummyMenuLinks = [
 ];
 
 const AsideMenu = () => {
-	const { isMenuOpen } = useContext(AppContext);
+	const { isMenuOpen, toggleOptionsHandler } = useContext(AppContext);
 
 	const dummyCreateDocument = () => {
 		console.log('create new document!');
+	};
+
+	const viewOptionsHandler = () => {
+		toggleOptionsHandler();
 	};
 
 	return (
@@ -53,7 +59,12 @@ const AsideMenu = () => {
 					/>
 				))}
 			</ul>
-			<ThemeToggler />
+			<div className='absolute right-4 bottom-10 left-4 flex items-center justify-between'>
+				<ThemeToggler />
+				<IconButton className='relative' onClick={viewOptionsHandler}>
+					<ViewOptions />
+				</IconButton>
+			</div>{' '}
 		</aside>
 	);
 };

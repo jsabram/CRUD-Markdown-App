@@ -4,7 +4,7 @@ import DocumentIcon from '../../assets/icons/icon-components/DocumentIcon';
 const NavLink: React.FC<LinkProps> = ({ id, title, docName }) => {
 	return (
 		<li className='link-element md:border-r-[1px] md:border-textGray200 lg:px-5'>
-			<a href={id} className='document-link'>
+			<a href={id} className='document-link outline-none'>
 				<DocumentIcon className='link-icon' />
 			</a>
 			<div className='ms-3'>

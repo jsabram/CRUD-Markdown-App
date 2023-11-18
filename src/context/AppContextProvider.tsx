@@ -5,6 +5,7 @@ import { ChildrenProps } from '../@types/component-types';
 const AppContextProvider: React.FC<ChildrenProps> = ({ children }) => {
 	const [isDarkThemed, setIsDarkThemed] = useState(false);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const [areOptionsOpen, setAreOptionsOpen] = useState(false);
 
 	const toggleThemeHandler = () => {
 		setIsDarkThemed((prevState) => {
@@ -17,6 +18,13 @@ const AppContextProvider: React.FC<ChildrenProps> = ({ children }) => {
 		setIsMenuOpen((prevState) => {
 			return !prevState;
 		});
+		setAreOptionsOpen(false);
+	};
+
+	const toggleOptionsHandler = () => {
+		setAreOptionsOpen((prevState) => {
+			return !prevState;
+		});
 	};
 
 	return (
@@ -26,6 +34,8 @@ const AppContextProvider: React.FC<ChildrenProps> = ({ children }) => {
 				toggleThemeHandler,
 				isMenuOpen,
 				toggleMenuHandler,
+				areOptionsOpen,
+				toggleOptionsHandler,
 			}}
 		>
 			{children}

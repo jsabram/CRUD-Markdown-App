@@ -13,6 +13,8 @@ export interface AppContextProps {
 	toggleThemeHandler: VoidFn;
 	isMenuOpen: boolean;
 	toggleMenuHandler: VoidFn;
+	areOptionsOpen: boolean;
+	toggleOptionsHandler: VoidFn;
 }
 
 // Resuable Components
@@ -30,9 +32,7 @@ export interface ColoredButtonProps extends ButtonProps {
 export interface IconButtonProps
 	extends ChildrenProps,
 		ClassNameProps,
-		ButtonProps {
-	tooltipText: string;
-}
+		ButtonProps {}
 
 // Aside Menu + MavLink?
 

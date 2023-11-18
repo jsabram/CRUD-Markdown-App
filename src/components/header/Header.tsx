@@ -46,7 +46,6 @@ const Header = () => {
 				<IconButton
 					className='me-3 lg:me-4'
 					onClick={dummyDeleteDocument}
-					tooltipText='Delete document'
 				>
 					<DeleteIcon />
 				</IconButton>
