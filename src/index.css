@@ -34,20 +34,10 @@ body {
 	background: var(--dark-gray-500);
 }
 
-.colored-btn::before {
-	position: absolute;
-	width: 30px;
-	height: 30px;
-	background: var(--primary-accent-color);
-	border-radius: 50%;
-	transform: translate(-50%, -50%) scale(0);
-	content: '';
-	animation: zoom 0.3s;
+path {
+	transition: stroke 0.3s;
 }
 
-@keyframes zoom {
-	to {
-		transform: translate(-50%, -50%) scale(2);
-		opacity: 0;
-	}
+.icon-active {
+	stroke: var(--primary-hover-color);
 }
