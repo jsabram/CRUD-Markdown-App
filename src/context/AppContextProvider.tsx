@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { AppContext } from './AppContext';
-import { ChildrenProps } from '../types/component-types';
+import { ChildrenProps } from '../@types/component-types';
 
 const AppContextProvider: React.FC<ChildrenProps> = ({ children }) => {
 	const [isLightThemed, setIsLightThemed] = useState(false);
