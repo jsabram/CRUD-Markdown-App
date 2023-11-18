@@ -40,7 +40,9 @@ path {
 
 .icon-active,
 .icon-btn:hover .icon,
-.icon-btn:focus .icon {
+.icon-btn:focus .icon,
+.document-link:hover .link-icon,
+.document-link:focus .link-icon {
 	stroke: var(--primary-color);
 }
 
@@ -61,8 +63,27 @@ path {
 	}
 }
 
-a:hover p,
-a:focus p {
+.link-element {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	padding: 0.5rem;
+	outline: none;
+}
+
+.link-element h3 {
+	font-size: 14px;
+	line-height: 20px;
+	color: var(--text-gray-200);
+}
+
+.link-element p {
+	color: var(--white);
+	transition: color 0.3s;
+}
+
+.aside-link:hover p,
+.aside-link:focus p {
 	color: var(--primary-color);
 }
 

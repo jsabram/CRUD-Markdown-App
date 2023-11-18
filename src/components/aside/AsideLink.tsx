@@ -1,13 +1,13 @@
 import { LinkProps } from '../../@types/component-types';
-import DocumentIcon from '../../assets/icons/document-icon.svg';
+import DocumentIcon from '../../assets/icons/icon-components/DocumentIcon';
 
 const AsideLink: React.FC<LinkProps> = ({ id, title, docName }) => {
 	return (
-		<a href={id} className='flex items-centerw-full py-2 outline-none'>
-			<img src={DocumentIcon} alt='' className='me-3' />
-			<div>
-				<h3 className='text-sm text-textGray200'>{title}</h3>
-				<p className='text-white transition-colors duration-300'>{docName}</p>
+		<a href={id} className='link-element document-link aside-link'>
+			<DocumentIcon className='link-icon' />
+			<div className='ms-3'>
+				<h3>{title}</h3>
+				<p>{docName}</p>
 			</div>
 		</a>
 	);

@@ -38,6 +38,6 @@ export interface IconButtonProps
 
 export interface LinkProps {
 	id: string;
-	title: string;
+	title?: string;
 	docName: string;
 }
