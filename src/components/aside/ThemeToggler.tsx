@@ -14,7 +14,7 @@ const ThemeToggler = () => {
 		<div className='flex items-end justify-between w-28'>
 			<SunIcon className={!isDarkThemed ? 'icon-active' : ''} />
 			<button
-				className='relative w-12 h-6 bg-lightGray100 outline-none rounded-xl transition-colors duration-300 hover:bg-primaryHover focus:bg-primaryHover'
+				className='relative w-12 h-6 bg-lightGray100 outline-none rounded-xl transition-colors duration-300 hover:bg-primary focus:bg-primary'
 				onClick={changeThemeHandler}
 			>
 				<span
