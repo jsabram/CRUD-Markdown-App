@@ -48,3 +48,32 @@ path {
 .icon-btn:focus .tooltip {
 	opacity: 1;
 }
+
+.aside-links {
+	max-height: 60vh;
+
+	@media screen and (orientation: landscape) {
+		max-height: 30vh;
+	}
+
+	@media screen and (min-width: 1024px) and (orientation: landscape) {
+		max-height: 60vh;
+	}
+}
+
+a:hover p,
+a:focus p {
+	color: var(--primary-color);
+}
+
+::-webkit-scrollbar {
+	width: 5px;
+}
+
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--primary-color);
+}

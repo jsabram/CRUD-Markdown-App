@@ -22,8 +22,9 @@ interface ButtonProps {
 }
 
 export interface ColoredButtonProps extends ButtonProps {
-	text: string;
 	src: any;
+	text: string;
+	className?: string;
 }
 
 export interface IconButtonProps
@@ -31,4 +32,12 @@ export interface IconButtonProps
 		ClassNameProps,
 		ButtonProps {
 	tooltipText: string;
+}
+
+// Aside Menu + MavLink?
+
+export interface LinkProps {
+	id: string;
+	title: string;
+	docName: string;
 }
