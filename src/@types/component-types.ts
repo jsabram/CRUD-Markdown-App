@@ -11,6 +11,8 @@ export interface ChildrenProps {
 export interface AppContextProps {
 	isDarkThemed: boolean;
 	toggleThemeHandler: VoidFn;
+	isMenuOpen: boolean;
+	toggleMenuHandler: VoidFn;
 }
 
 // Resuable Components
