@@ -26,4 +26,9 @@ export interface ColoredButtonProps extends ButtonProps {
 	src: any;
 }
 
-export interface IconButtonProps extends ChildrenProps, ClassNameProps, ButtonProps {}
+export interface IconButtonProps
+	extends ChildrenProps,
+		ClassNameProps,
+		ButtonProps {
+	tooltipText: string;
+}

@@ -35,7 +35,11 @@ const Header = () => {
 				)}
 			</button>
 			<div className='flex items-center'>
-				<IconButton className='me-3 lg:me-4' onClick={dummyDeleteDocument}>
+				<IconButton
+					className='me-3 lg:me-4'
+					onClick={dummyDeleteDocument}
+					tooltipText='Delete document'
+				>
 					<DeleteIcon />
 				</IconButton>
 				<ColoredButton

@@ -43,3 +43,8 @@ path {
 .icon-btn:focus .icon {
 	stroke: var(--primary-color);
 }
+
+.icon-btn:hover .tooltip,
+.icon-btn:focus .tooltip {
+	opacity: 1;
+}
