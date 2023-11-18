@@ -1,4 +1,4 @@
-import { ColoredButtonProps } from '../../../@types/component-types';
+import { ColoredButtonProps } from '../../@types/component-types';
 import { gsap } from 'gsap';
 
 const ColoredButton: React.FC<ColoredButtonProps> = ({
