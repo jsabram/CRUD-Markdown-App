@@ -2,6 +2,7 @@ import { useEffect, useContext } from 'react';
 import { useTheme } from './hooks/useTheme';
 import { AppContext } from './context/AppContext';
 import Header from './components/header/Header';
+import AsideMenu from './components/aside/AsideMenu';
 
 const App = () => {
 	const appCtx = useContext(AppContext);
@@ -18,8 +19,9 @@ const App = () => {
 
 	return (
 		<>
-			<div className='xxl:max-w-[2220px] xxl:mx-auto xxl:overflow-hidden'>
+			<div className='overflow-hidden xxl:max-w-[2220px] xxl:mx-auto'>
 				<Header />
+				<AsideMenu />
 			</div>
 		</>
 	);

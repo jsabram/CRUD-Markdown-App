@@ -23,9 +23,13 @@ const Header = () => {
 	};
 
 	return (
-		<header className='flex items-center justify-between pe-2 bg-darkGray200 lg:pe-4'>
+		<header
+			className={`flex items-center justify-between pe-2 bg-darkGray200 transition-transform duration-300 lg:pe-4 ${
+				isMenuOpen ? 'translate-x-[250px]' : 'translate-x-0'
+			}`}
+		>
 			<button
-				className='flex justify-center items-center h-[55px] w-[55px] bg-darkGray100 outline-non transition-colors duration-300 hover:bg-primary focus:bg-primary  lg:h-[70px] lg:w-[70px]'
+				className='flex justify-center items-center h-[55px] w-[55px] bg-darkGray100 outline-none transition-colors duration-300 hover:bg-primary focus:bg-primary  lg:h-[70px] lg:w-[70px]'
 				onClick={changeMenuHandler}
 			>
 				{isMenuOpen ? (
