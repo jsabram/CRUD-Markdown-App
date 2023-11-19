@@ -22,6 +22,11 @@ const AppContextProvider: React.FC<ChildrenProps> = ({ children }) => {
 		setAreOptionsOpen(false);
 	};
 
+	const closeMenuHandler = () => {
+		setIsMenuOpen(false);
+		setAreOptionsOpen(false);
+	};
+
 	const toggleOptionsHandler = () => {
 		setAreOptionsOpen((prevState) => {
 			return !prevState;
@@ -39,6 +44,7 @@ const AppContextProvider: React.FC<ChildrenProps> = ({ children }) => {
 				toggleThemeHandler,
 				isMenuOpen,
 				toggleMenuHandler,
+				closeMenuHandler,
 				areOptionsOpen,
 				toggleOptionsHandler,
 				selectedView,

@@ -17,6 +17,7 @@ export interface AppContextProps {
 	toggleThemeHandler: VoidFn;
 	isMenuOpen: boolean;
 	toggleMenuHandler: VoidFn;
+	closeMenuHandler: VoidFn;
 	areOptionsOpen: boolean;
 	toggleOptionsHandler: VoidFn;
 	selectedView: string;
@@ -51,4 +52,3 @@ export interface LinkProps {
 	title?: string;
 	docName: string;
 }
-

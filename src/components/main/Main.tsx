@@ -4,12 +4,10 @@ import Editor from './Editor';
 import Preview from './Preview';
 
 const Main = () => {
-	const { isMenuOpen, toggleMenuHandler, selectedView } = useContext(
-		AppContext
-	);
+	const { isMenuOpen, closeMenuHandler, selectedView } = useContext(AppContext);
 
-	const closeMenuHandler = () => {
-		toggleMenuHandler();
+	const hideMenuHandler = () => {
+		closeMenuHandler();
 	};
 
 	return (
@@ -17,14 +15,14 @@ const Main = () => {
 			className={`flex transition-transform duration-300 bg-red-100 ${
 				isMenuOpen ? 'translate-x-[250px]' : 'translate-x-0'
 			}`}
-			onClick={closeMenuHandler}
+			onClick={hideMenuHandler}
 		>
 			{selectedView === 'editor' && <Editor />}
 			{selectedView === 'preview' && <Preview />}
 			{selectedView === 'comparison' && (
 				<>
 					<Editor />
-					<Preview  />
+					<Preview />
 				</>
 			)}
 		</main>
