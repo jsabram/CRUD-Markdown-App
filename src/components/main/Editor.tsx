@@ -8,13 +8,15 @@ const Editor = () => {
 
 	return (
 		<section
-			className={`relative h-full bg-red-100 ${
-				selectedView === 'editor' ? 'w-full' : 'w-1/2'
+			className={`relative h-full ${
+				selectedView === 'editor' ? 'only-editor w-full' : 'w-1/2'
 			} `}
 		>
 			<ResizableBox direction='horizontal'>
-				<SectionHeader sectionTitle='Editor' />
-				<textarea className='w-full h-full px-4 pt-10 pb-2 me-20 bg-white outline-none border-none font-editor caret-primary resize-none dark:bg-darkGray500 dark:text-textGray100'></textarea>
+				<>
+					<SectionHeader sectionTitle='Editor' />
+					<textarea className='w-full h-full px-4 pt-10 pb-2 me-20 bg-white outline-none border-none font-editor caret-primary resize-none dark:bg-darkGray500 dark:text-textGray100'></textarea>
+				</>
 			</ResizableBox>
 		</section>
 	);

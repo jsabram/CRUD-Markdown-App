@@ -90,20 +90,6 @@ path {
 	color: var(--primary-color);
 }
 
-::-webkit-scrollbar {
-	width: 5px;
-}
-
-::-webkit-scrollbar-track {
-	background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-	background: var(--primary-color);
-}
-
-/* Resizable */
-
 .react-resizable-handle {
 	position: absolute;
 	right: 0;
@@ -118,6 +104,10 @@ path {
 	transition-delay: 0.3s;
 }
 
+.only-editor .react-resizable-handle {
+	display: none;
+}
+
 .react-resizable-handle:hover {
 	background-color: var(--primary-color);
 	border-color: var(--primary-color);
@@ -126,4 +116,24 @@ path {
 .react-resizable-handle:active {
 	background-color: var(--primary-hover-color);
 	border-color: var(--primary-hover-color);
+}
+
+::-webkit-scrollbar {
+	width: 5px;
+}
+
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--primary-color);
+}
+
+::-moz-selection {
+	background: var(--primary-accent-color);
+}
+
+::selection {
+	background: var(--primary-accent-color);
 }

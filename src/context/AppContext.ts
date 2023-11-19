@@ -6,6 +6,7 @@ export const AppContext = React.createContext<AppContextProps>({
 	toggleThemeHandler: () => {},
 	isMenuOpen: false,
 	toggleMenuHandler: () => {},
+	openMenuHandler: () => {},
 	closeMenuHandler: () => {},
 	areOptionsOpen: false,
 	toggleOptionsHandler: () => {},

@@ -17,6 +17,7 @@ export interface AppContextProps {
 	toggleThemeHandler: VoidFn;
 	isMenuOpen: boolean;
 	toggleMenuHandler: VoidFn;
+	openMenuHandler: VoidFn;
 	closeMenuHandler: VoidFn;
 	areOptionsOpen: boolean;
 	toggleOptionsHandler: VoidFn;

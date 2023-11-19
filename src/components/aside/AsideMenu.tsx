@@ -21,7 +21,9 @@ const dummyMenuLinks = [
 ];
 
 const AsideMenu = () => {
-	const { isMenuOpen, toggleOptionsHandler } = useContext(AppContext);
+	const { isMenuOpen, toggleOptionsHandler } = useContext(
+		AppContext
+	);
 
 	const dummyCreateDocument = () => {
 		console.log('create new document!');
