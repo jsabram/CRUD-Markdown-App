@@ -8,6 +8,10 @@ export interface ChildrenProps {
 	children: React.ReactNode;
 }
 
+type ViewMode = 'editor' | 'preview' | 'comparison';
+
+export type ChangeViewFn = (value: ViewMode) => void;
+
 export interface AppContextProps {
 	isDarkThemed: boolean;
 	toggleThemeHandler: VoidFn;
@@ -15,6 +19,8 @@ export interface AppContextProps {
 	toggleMenuHandler: VoidFn;
 	areOptionsOpen: boolean;
 	toggleOptionsHandler: VoidFn;
+	selectedView: string;
+	changeViewHandler: ChangeViewFn;
 }
 
 // Resuable Components
@@ -34,6 +40,10 @@ export interface IconButtonProps
 		ClassNameProps,
 		ButtonProps {}
 
+export interface SectionHeaderProps {
+	sectionTitle: string;
+}
+
 // Aside Menu + MavLink?
 
 export interface LinkProps {
@@ -41,3 +51,4 @@ export interface LinkProps {
 	title?: string;
 	docName: string;
 }
+

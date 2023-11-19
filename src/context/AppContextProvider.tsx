@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { AppContext } from './AppContext';
-import { ChildrenProps } from '../@types/component-types';
+import { ChildrenProps, ChangeViewFn } from '../@types/component-types';
 
 const AppContextProvider: React.FC<ChildrenProps> = ({ children }) => {
 	const [isDarkThemed, setIsDarkThemed] = useState(false);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [areOptionsOpen, setAreOptionsOpen] = useState(false);
+	const [selectedView, setSelectedView] = useState('editor');
 
 	const toggleThemeHandler = () => {
 		setIsDarkThemed((prevState) => {
@@ -27,6 +28,10 @@ const AppContextProvider: React.FC<ChildrenProps> = ({ children }) => {
 		});
 	};
 
+	const changeViewHandler: ChangeViewFn = (value) => {
+		setSelectedView(value);
+	};
+
 	return (
 		<AppContext.Provider
 			value={{
@@ -36,6 +41,8 @@ const AppContextProvider: React.FC<ChildrenProps> = ({ children }) => {
 				toggleMenuHandler,
 				areOptionsOpen,
 				toggleOptionsHandler,
+				selectedView,
+				changeViewHandler,
 			}}
 		>
 			{children}

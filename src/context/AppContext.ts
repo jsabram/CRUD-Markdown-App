@@ -8,4 +8,6 @@ export const AppContext = React.createContext<AppContextProps>({
 	toggleMenuHandler: () => {},
 	areOptionsOpen: false,
 	toggleOptionsHandler: () => {},
+	selectedView: '',
+	changeViewHandler: () => {},
 });

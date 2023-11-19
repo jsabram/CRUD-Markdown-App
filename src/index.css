@@ -34,6 +34,14 @@ body {
 	background: var(--dark-gray-500);
 }
 
+main {
+	height: calc(100vh - 55px);
+
+	@media screen and (min-width: 998px) {
+		height: calc(100vh - 70px);
+	}
+}
+
 path {
 	transition: stroke 0.3s;
 }
