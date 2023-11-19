@@ -35,7 +35,7 @@ const AsideMenu = () => {
 
 	return (
 		<aside
-			className={`fixed top-0 bottom-0 left-0 w-[250px] py-4 px-4 bg-darkGray300 trasition-transform duration-300 lg:pt-6 ${
+			className={`absolute top-0 bottom-0 left-0 w-[250px] py-4 px-4 bg-darkGray300 trasition-transform duration-300 lg:pt-6 ${
 				isMenuOpen ? 'translate-x-0' : '-translate-x-full'
 			}`}
 		>

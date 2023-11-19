@@ -19,7 +19,7 @@ const App = () => {
 
 	const swipeHandlers = useSwipeable({
 		onSwipedRight: () => openMenuHandler(),
-		onSwipedLeft: () => closeMenuHandler()
+		onSwipedLeft: () => closeMenuHandler(),
 	});
 
 	const checkThemeHandler = useTheme();
@@ -37,7 +37,7 @@ const App = () => {
 	return (
 		<>
 			<div
-				className='overflow-hidden xxl:max-w-[2220px] xxl:mx-auto'
+				className='relative overflow-hidden xxl:max-w-[2220px] xxl:mx-auto'
 				{...swipeHandlers}
 			>
 				<Header />
