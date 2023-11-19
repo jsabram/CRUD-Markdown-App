@@ -101,3 +101,29 @@ path {
 ::-webkit-scrollbar-thumb {
 	background: var(--primary-color);
 }
+
+/* Resizable */
+
+.react-resizable-handle {
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: block;
+	width: 5px;
+	height: 100%;
+	background: transparent;
+	border-right: 1px solid var(--text-gray-200);
+	cursor: col-resize;
+	transition: background-color 0.3s, border-color 0.3s;
+	transition-delay: 0.3s;
+}
+
+.react-resizable-handle:hover {
+	background-color: var(--primary-color);
+	border-color: var(--primary-color);
+}
+
+.react-resizable-handle:active {
+	background-color: var(--primary-hover-color);
+	border-color: var(--primary-hover-color);
+}

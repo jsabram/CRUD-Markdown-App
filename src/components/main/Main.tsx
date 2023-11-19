@@ -12,7 +12,7 @@ const Main = () => {
 
 	return (
 		<main
-			className={`flex transition-transform duration-300 bg-red-100 ${
+			className={`flex transition-transform duration-300 ${
 				isMenuOpen ? 'translate-x-[250px]' : 'translate-x-0'
 			}`}
 			onClick={hideMenuHandler}
