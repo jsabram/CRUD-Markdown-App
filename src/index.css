@@ -20,7 +20,7 @@
 }
 
 body {
-	background: var(--white);
+	background: var(--dark-gray-500);
 	font-family: 'IBM Plex Sans', sans-serif;
 	font-size: 0.875rem;
 	font-size: clamp(
@@ -28,10 +28,6 @@ body {
 		0.8533333333333333rem + 0.10666666666666667vw,
 		1rem
 	);
-}
-
-.dark body {
-	background: var(--dark-gray-500);
 }
 
 main {
