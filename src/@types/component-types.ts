@@ -25,6 +25,12 @@ export interface AppContextProps {
 	changeViewHandler: ChangeViewFn;
 }
 
+// Resizeable
+
+export interface ResizableBoxProps extends ChildrenProps {
+	direction: 'horizontal';
+}
+
 // Resuable Components
 
 interface ButtonProps {

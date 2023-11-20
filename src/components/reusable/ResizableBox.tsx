@@ -1,16 +1,14 @@
 import { ResizableBox as ResizableContainer } from 'react-resizable';
-
-interface ResizableBoxProps {
-	direction: 'horizontal';
-	children: React.ReactNode;
-}
+import { ResizableBoxProps } from '../../@types/component-types';
 
 const ResizableBox: React.FC<ResizableBoxProps> = ({ direction, children }) => {
 	return (
 		<ResizableContainer
-			className='w-full h-full bg-red-400'
+			className='h-full'
 			height={Infinity}
-			width={Infinity}
+			width={window.innerWidth / 2}
+			minConstraints={[window.innerWidth * 0.2, Infinity]}
+			maxConstraints={[window.innerWidth * 0.8, Infinity]}
 			resizeHandles={['e']}
 		>
 			{children}
