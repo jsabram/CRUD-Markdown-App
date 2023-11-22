@@ -7,6 +7,8 @@ const AppContextProvider: React.FC<ChildrenProps> = ({ children }) => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [areOptionsOpen, setAreOptionsOpen] = useState(false);
 	const [selectedView, setSelectedView] = useState('editor');
+	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+	const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
 	const toggleThemeHandler = () => {
 		setIsDarkThemed((prevState) => {
@@ -41,6 +43,22 @@ const AppContextProvider: React.FC<ChildrenProps> = ({ children }) => {
 		setSelectedView(value);
 	};
 
+	const openDeleteModalHandler = () => {
+		setIsDeleteModalOpen(true);
+	};
+
+	const closeDeleteModalHandler = () => {
+		setIsDeleteModalOpen(false);
+	};
+
+	const openCreateModalHandler = () => {
+		setIsCreateModalOpen(true);
+	};
+
+	const closeCreateModalHandler = () => {
+		setIsCreateModalOpen(false);
+	};
+
 	return (
 		<AppContext.Provider
 			value={{
@@ -54,6 +72,12 @@ const AppContextProvider: React.FC<ChildrenProps> = ({ children }) => {
 				toggleOptionsHandler,
 				selectedView,
 				changeViewHandler,
+				isDeleteModalOpen,
+				openDeleteModalHandler,
+				closeDeleteModalHandler,
+				isCreateModalOpen,
+				openCreateModalHandler,
+				closeCreateModalHandler,
 			}}
 		>
 			{children}

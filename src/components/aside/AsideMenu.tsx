@@ -6,6 +6,7 @@ import AsideLink from './AsideLink';
 import ThemeToggler from './ThemeToggler';
 import IconButton from '../reusable/IconButton';
 import ViewOptions from './ViewOptions';
+import Modal from '../modal/Modal';
 
 const dummyMenuLinks = [
 	{
@@ -21,9 +22,7 @@ const dummyMenuLinks = [
 ];
 
 const AsideMenu = () => {
-	const { isMenuOpen, toggleOptionsHandler } = useContext(
-		AppContext
-	);
+	const { isMenuOpen, toggleOptionsHandler } = useContext(AppContext);
 
 	const dummyCreateDocument = () => {
 		console.log('create new document!');
@@ -46,6 +45,7 @@ const AsideMenu = () => {
 				Documents
 			</h2>
 			<ColoredButton
+				id='create'
 				className='w-full justify-center'
 				src={PencilIcon}
 				onClick={dummyCreateDocument}

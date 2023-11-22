@@ -23,6 +23,12 @@ export interface AppContextProps {
 	toggleOptionsHandler: VoidFn;
 	selectedView: string;
 	changeViewHandler: ChangeViewFn;
+	isDeleteModalOpen: boolean;
+	openDeleteModalHandler: VoidFn;
+	closeDeleteModalHandler: VoidFn;
+	isCreateModalOpen: boolean;
+	openCreateModalHandler: VoidFn;
+	closeCreateModalHandler: VoidFn;
 }
 
 // Resizeable
@@ -38,6 +44,7 @@ interface ButtonProps {
 }
 
 export interface ColoredButtonProps extends ButtonProps {
+	id: string;
 	src: any;
 	text: string;
 	className?: string;
@@ -59,3 +66,22 @@ export interface LinkProps {
 	title?: string;
 	docName: string;
 }
+
+// Modal
+
+export interface ModalMessageProps extends ChildrenProps {
+	title: string;
+	message: string;
+	onConfirm: VoidFn;
+}
+
+export interface ModalBackgroundProps {
+	onCancel: VoidFn;
+}
+
+export interface ModalButtonsProps {
+	onCancel: VoidFn;
+	onConfirm: VoidFn;
+}
+
+export interface ModalProps extends ModalMessageProps, ModalBackgroundProps {}

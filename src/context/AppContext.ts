@@ -12,4 +12,10 @@ export const AppContext = React.createContext<AppContextProps>({
 	toggleOptionsHandler: () => {},
 	selectedView: '',
 	changeViewHandler: () => {},
+	isDeleteModalOpen: false,
+	openDeleteModalHandler: () => {},
+	closeDeleteModalHandler: () => {},
+	isCreateModalOpen: false,
+	openCreateModalHandler: () => {},
+	closeCreateModalHandler: () => {},
 });

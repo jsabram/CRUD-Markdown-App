@@ -9,7 +9,9 @@ import DeleteIcon from '../../assets/icons/icon-components/DeleteIcon';
 import Nav from '../nav/Nav';
 
 const Header = () => {
-	const { isMenuOpen, toggleMenuHandler } = useContext(AppContext);
+	const { isMenuOpen, toggleMenuHandler, openDeleteModalHandler } = useContext(
+		AppContext
+	);
 
 	const changeMenuHandler = () => {
 		toggleMenuHandler();
@@ -19,8 +21,8 @@ const Header = () => {
 		console.log('changes saved!');
 	};
 
-	const dummyDeleteDocument = () => {
-		console.log('document deleted!');
+	const deleteDocumentHandler = () => {
+		openDeleteModalHandler();
 	};
 
 	return (
@@ -43,13 +45,11 @@ const Header = () => {
 				<Nav />
 			</div>
 			<div className='flex items-center'>
-				<IconButton
-					className='me-3 lg:me-4'
-					onClick={dummyDeleteDocument}
-				>
+				<IconButton className='me-3 lg:me-4' onClick={deleteDocumentHandler}>
 					<DeleteIcon />
 				</IconButton>
 				<ColoredButton
+					id='save'
 					onClick={dummySaveChanges}
 					src={SaveIcon}
 					text='Save Changes'

@@ -1,3 +1,4 @@
+import ReactDOM from 'react-dom';
 import { useEffect, useContext } from 'react';
 import { useMediaQuery } from '@uidotdev/usehooks';
 import { useSwipeable } from 'react-swipeable';
@@ -6,6 +7,7 @@ import { AppContext } from './context/AppContext';
 import Header from './components/header/Header';
 import Main from './components/main/Main';
 import AsideMenu from './components/aside/AsideMenu';
+import DeleteDocModal from './components/modal/DeleteDocModal';
 
 const App = () => {
 	const {
@@ -13,6 +15,7 @@ const App = () => {
 		openMenuHandler,
 		closeMenuHandler,
 		changeViewHandler,
+		isDeleteModalOpen,
 	} = useContext(AppContext);
 
 	const isTablet = useMediaQuery('(min-width: 768px)');
@@ -43,6 +46,11 @@ const App = () => {
 				<Header />
 				<Main />
 				<AsideMenu />
+				{isDeleteModalOpen &&
+					ReactDOM.createPortal(
+						<DeleteDocModal />,
+						document.getElementById('modal')!
+					)}
 			</div>
 		</>
 	);
