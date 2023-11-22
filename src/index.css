@@ -139,11 +139,12 @@ path {
 }
 
 .title-label {
-	transition: color 0.3s, background-color 0.3s, transform 0.3s;
+	transition: color 0.3s, background-color 0.3s, transform 0.3s, opacity 0.3s;
 }
 
-.title-input:focus ~ .title-label {
+.title-input:focus ~ .title-label,
+.title-input:valid ~ .title-label {
 	color: var(--white);
 	background-color: var(--primary-color);
-	transform: translate(0.5rem, -1.25rem) scale(0.8);
+	transform: translate(.2rem, -1.25rem) scale(0.8);
 }

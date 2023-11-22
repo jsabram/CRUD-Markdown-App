@@ -48,6 +48,7 @@ export interface ColoredButtonProps extends ButtonProps {
 	src: any;
 	text: string;
 	className?: string;
+	disabled?: boolean;
 }
 
 export interface IconButtonProps
@@ -82,6 +83,7 @@ export interface ModalBackgroundProps {
 export interface ModalButtonsProps {
 	onCancel: VoidFn;
 	onConfirm: VoidFn;
+	disabled?: boolean;
 }
 
 export interface ModalProps extends ModalMessageProps, ModalBackgroundProps {}

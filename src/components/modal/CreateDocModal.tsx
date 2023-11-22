@@ -1,18 +1,25 @@
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
 import Modal from './Modal';
 import ModalButtons from './ModalButtons';
 
 const CreateDocModal = () => {
+	const [title, setTitle] = useState('');
+
 	const { closeCreateModalHandler } = useContext(AppContext);
 
 	const createDocumentHandler = () => {
 		console.log('Create document');
+		setTitle('');
 		closeCreateModalHandler();
 	};
 
 	const cancelHandler = () => {
 		closeCreateModalHandler();
+	};
+
+	const nameHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setTitle(event.target.value);
 	};
 
 	return (
@@ -27,6 +34,9 @@ const CreateDocModal = () => {
 					id='documentTitle'
 					type='text'
 					className='title-input w-full py-2 px-2 bg-transparent border border-primary rounded-lg outline-none text-textGray200 caret-primary dark:text-textGray100'
+					value={title}
+					required={true}
+					onChange={nameHandler}
 				/>
 				<label
 					htmlFor='documentTitle'
@@ -39,6 +49,7 @@ const CreateDocModal = () => {
 			<ModalButtons
 				onCancel={cancelHandler}
 				onConfirm={createDocumentHandler}
+				disabled={title.trim().length === 0}
 			/>
 		</Modal>
 	);

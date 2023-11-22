@@ -3,14 +3,18 @@ import ColoredButton from '../reusable/ColoredButton';
 import CheckIcon from '../../assets/icons/check-icon.svg';
 import CloseBtnIcon from '../../assets/icons/close-btn-icon.svg';
 
-const ModalButtons: React.FC<ModalButtonsProps> = ({ onCancel, onConfirm }) => {
-    const cancelHandler = () => {
-        onCancel()
-    };
+const ModalButtons: React.FC<ModalButtonsProps> = ({
+	onCancel,
+	onConfirm,
+	disabled,
+}) => {
+	const cancelHandler = () => {
+		onCancel();
+	};
 
-    const confirmHandler = () => {
-        onConfirm()
-    };
+	const confirmHandler = () => {
+		onConfirm();
+	};
 
 	return (
 		<div className='flex items-center justify-evenly'>
@@ -27,6 +31,7 @@ const ModalButtons: React.FC<ModalButtonsProps> = ({ onCancel, onConfirm }) => {
 				className='w-[100px] flex items-center justify-center md:w-[150px]'
 				text='Confirm'
 				onClick={confirmHandler}
+				disabled={disabled}
 			/>
 		</div>
 	);

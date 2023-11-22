@@ -7,6 +7,7 @@ const ColoredButton: React.FC<ColoredButtonProps> = ({
 	text,
 	src,
 	className,
+	disabled,
 }) => {
 	const clickHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
 		const clickTopPosition = event.clientY - event.currentTarget.offsetTop;
@@ -32,9 +33,11 @@ const ColoredButton: React.FC<ColoredButtonProps> = ({
 	};
 	return (
 		<button
-			className={`relative flex items-center p-2 outline-none rounded-lg text-white tracking-wide overflow-hidden transition-colors duration-300 hover:bg-primaryHover focus:bg-primaryHover md:px-4 ${className && className
-				} ${id === 'cancel' ? 'bg-darkGray100' : 'bg-primary'}`} 
+			className={`relative flex items-center p-2 outline-none rounded-lg text-white tracking-wide overflow-hidden transition-colors duration-300 hover:bg-primaryHover focus:bg-primaryHover disabled:bg-darkGray100 disabled:cursor-not-allowed disabled:opacity-50 md:px-4 ${
+				className && className
+			} ${id === 'cancel' ? 'bg-darkGray100' : 'bg-primary'}`}
 			onClick={clickHandler}
+			disabled={disabled}
 		>
 			<img src={src} alt='' className='md:mr-2' />
 			<span className={`hidden md:inline`}>{text}</span>
