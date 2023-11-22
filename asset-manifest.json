@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/CRUD-Markdown-App/static/css/main.d22bbdc4.css",
+    "main.js": "/CRUD-Markdown-App/static/js/main.ba846874.js",
+    "static/media/close-btn-icon.svg": "/CRUD-Markdown-App/static/media/close-btn-icon.d8adb7d2bc44b4b1a2e6b070011be400.svg",
+    "static/media/save-icon.svg": "/CRUD-Markdown-App/static/media/save-icon.4a03ed6a07e71c051d8ed3727d93a0ef.svg",
+    "static/media/pencil-icon.svg": "/CRUD-Markdown-App/static/media/pencil-icon.b0600cf011e7f4e2c2ae0bfde5134211.svg",
+    "static/media/check-icon.svg": "/CRUD-Markdown-App/static/media/check-icon.8f9f0a403fff1942106fc6b1c0628a35.svg",
+    "index.html": "/CRUD-Markdown-App/index.html",
+    "static/media/menu-icon.svg": "/CRUD-Markdown-App/static/media/menu-icon.c0a2dc967fe110d0a7fb9b62c1abff6e.svg",
+    "static/media/close-icon.svg": "/CRUD-Markdown-App/static/media/close-icon.f14e396287ef2b29689a1389caa44a07.svg",
+    "main.d22bbdc4.css.map": "/CRUD-Markdown-App/static/css/main.d22bbdc4.css.map",
+    "main.ba846874.js.map": "/CRUD-Markdown-App/static/js/main.ba846874.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d22bbdc4.css",
+    "static/js/main.ba846874.js"
+  ]
+}
