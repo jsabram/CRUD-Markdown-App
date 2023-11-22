@@ -10,7 +10,7 @@ const ModalMessage: React.FC<ModalMessageProps> = ({
 			<h5 className='text-lg text-darkGray100 font-bold dark:text-white md:text-2xl'>
 				{title}
 			</h5>
-			<p className='mt-2 mb-8 text-textGray200 leading-6 dark:text-textGray100'>
+			<p className='mt-2 mb-6 text-textGray200 leading-6 dark:text-textGray100'>
 				{message}
 			</p>
 			{children}

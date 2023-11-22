@@ -22,10 +22,14 @@ const dummyMenuLinks = [
 ];
 
 const AsideMenu = () => {
-	const { isMenuOpen, toggleOptionsHandler } = useContext(AppContext);
+	const {
+		isMenuOpen,
+		toggleOptionsHandler,
+		openCreateModalHandler,
+	} = useContext(AppContext);
 
-	const dummyCreateDocument = () => {
-		console.log('create new document!');
+	const createDocumentHandler = () => {
+		openCreateModalHandler();
 	};
 
 	const viewOptionsHandler = () => {
@@ -48,7 +52,7 @@ const AsideMenu = () => {
 				id='create'
 				className='w-full justify-center'
 				src={PencilIcon}
-				onClick={dummyCreateDocument}
+				onClick={createDocumentHandler}
 				text='Create a document'
 			/>
 			<ul className='aside-links py-3 my-4 border-t-[1px] border-b-[1px] border-textGray200 overflow-y-scroll md:my-8'>

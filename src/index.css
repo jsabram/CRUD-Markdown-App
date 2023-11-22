@@ -137,3 +137,13 @@ path {
 ::selection {
 	background: var(--primary-accent-color);
 }
+
+.title-label {
+	transition: color 0.3s, background-color 0.3s, transform 0.3s;
+}
+
+.title-input:focus ~ .title-label {
+	color: var(--white);
+	background-color: var(--primary-color);
+	transform: translate(0.5rem, -1.25rem) scale(0.8);
+}

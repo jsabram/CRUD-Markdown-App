@@ -8,6 +8,7 @@ import Header from './components/header/Header';
 import Main from './components/main/Main';
 import AsideMenu from './components/aside/AsideMenu';
 import DeleteDocModal from './components/modal/DeleteDocModal';
+import CreateDocModal from './components/modal/CreateDocModal';
 
 const App = () => {
 	const {
@@ -16,6 +17,7 @@ const App = () => {
 		closeMenuHandler,
 		changeViewHandler,
 		isDeleteModalOpen,
+		isCreateModalOpen,
 	} = useContext(AppContext);
 
 	const isTablet = useMediaQuery('(min-width: 768px)');
@@ -49,6 +51,11 @@ const App = () => {
 				{isDeleteModalOpen &&
 					ReactDOM.createPortal(
 						<DeleteDocModal />,
+						document.getElementById('modal')!
+					)}
+				{isCreateModalOpen &&
+					ReactDOM.createPortal(
+						<CreateDocModal />,
 						document.getElementById('modal')!
 					)}
 			</div>
