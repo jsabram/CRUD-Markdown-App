@@ -104,6 +104,7 @@ path {
 	transition-delay: 0.3s;
 }
 
+
 .only-editor .react-resizable-handle {
 	display: none;
 }
@@ -146,5 +147,5 @@ path {
 .title-input:valid ~ .title-label {
 	color: var(--white);
 	background-color: var(--primary-color);
-	transform: translate(.2rem, -1.25rem) scale(0.8);
+	transform: translate(0.2rem, -1.25rem) scale(0.8);
 }

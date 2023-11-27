@@ -9,7 +9,7 @@ const Editor = () => {
 	return (
 		<section
 			className={`relative h-full ${
-				selectedView === 'editor' ? 'only-editor w-full' : ''
+				selectedView === 'editor' ? 'only-editor' : ''
 			} `}
 		>
 			<ResizableBox direction='horizontal'>
