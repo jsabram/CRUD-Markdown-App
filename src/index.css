@@ -104,7 +104,6 @@ path {
 	transition-delay: 0.3s;
 }
 
-
 .only-editor .react-resizable-handle {
 	display: none;
 }
@@ -117,6 +116,10 @@ path {
 .react-resizable-handle:active {
 	background-color: var(--primary-hover-color);
 	border-color: var(--primary-hover-color);
+}
+
+.preview blockquote {
+	color: red;
 }
 
 ::-webkit-scrollbar {
