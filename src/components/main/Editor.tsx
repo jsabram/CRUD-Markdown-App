@@ -26,7 +26,7 @@ const Editor = () => {
 				<>
 					<SectionHeader sectionTitle='Editor' />
 					<textarea
-						className='w-full h-full px-4 pt-10 pb-2 me-20 bg-white outline-none border-none font-editor caret-primary resize-none dark:bg-darkGray500 dark:text-textGray100'
+						className='w-full h-full px-8 pt-10 pb-2 me-20 bg-white outline-none border-none font-editor caret-primary resize-none dark:bg-darkGray500 dark:text-textGray100'
 						onChange={editorValueHandler}
 					></textarea>
 				</>
