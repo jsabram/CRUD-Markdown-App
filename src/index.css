@@ -126,7 +126,6 @@ path {
 .preview h6 {
 	font-weight: bold;
 	color: var(--dark-gray-300);
-	margin-block: 0.5em;
 }
 
 .preview h1 {
@@ -169,7 +168,8 @@ path {
 	line-height: 1.1;
 }
 
-.preview h5 {
+.preview h5,
+.preview dt {
 	font-size: 1.25rem;
 	font-size: clamp(
 		1.25rem,
@@ -190,7 +190,6 @@ path {
 }
 
 .preview p {
-	margin-block: 1em;
 	font-size: 0.875rem;
 	font-size: clamp(0.875rem, 0.837962962962963rem + 0.1851851851851852vw, 1rem);
 }
@@ -226,14 +225,12 @@ path {
 }
 
 .preview hr {
-	margin-block: 1em;
 	border-color: var(--primary-color);
 }
 
 .preview pre,
 .preview blockquote {
 	position: relative;
-	margin-block: 1em;
 	padding: 1rem 2rem;
 	border-radius: 0.5rem;
 	overflow: hidden;
@@ -263,6 +260,43 @@ path {
 
 .preview img {
 	max-width: 100%;
+}
+
+.preview table {
+	width: 100%;
+}
+
+.preview thead {
+	background-color: var(--primary-color);
+	border: 1px solid var(--primary-color);
+	color: var(--white);
+}
+
+.preview tbody,
+td {
+	border: 1px solid var(--text-gray-200);
+	text-align: center;
+}
+
+.preview th,
+td {
+	padding: 0.5em;
+}
+
+.preview dt {
+	font-weight: bold;
+}
+
+.preview dd {
+	padding: 0 0 0 1em;
+}
+
+.preview del {
+	font-style: italic;
+}
+
+.preview input[type='checkbox'] {
+	margin-right: 0.5em;
 }
 
 .dark .preview h1,
@@ -298,7 +332,7 @@ path {
 }
 
 ::selection {
-	background: var(--primary-accent-color);
+	background: #8039fba8;
 }
 
 .title-label {
