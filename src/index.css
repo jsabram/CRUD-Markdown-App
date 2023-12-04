@@ -124,6 +124,7 @@ path {
 .preview h4,
 .preview h5,
 .preview h6 {
+	margin-block-end: 0.5em;
 	font-weight: bold;
 	color: var(--dark-gray-300);
 }
@@ -189,6 +190,18 @@ path {
 	line-height: 1.125;
 }
 
+.preview p,
+.preview ul,
+.preview ol,
+.preview blockquote,
+.preview pre {
+	margin-block-end: 0.8em;
+}
+
+.preview blockquote p {
+	margin-block-end: 0;
+}
+
 .preview p {
 	font-size: 0.875rem;
 	font-size: clamp(0.875rem, 0.837962962962963rem + 0.1851851851851852vw, 1rem);
@@ -214,7 +227,8 @@ path {
 	list-style-type: disc;
 }
 
-.preview ul li::marker {
+.preview ul li::marker,
+.preview ol li::marker {
 	color: var(--primary-color);
 }
 
@@ -241,10 +255,6 @@ path {
 .preview blockquote {
 	background-color: var(--light-gray);
 	color: var(--dark-gray-500);
-}
-
-.preview blockquote {
-	font-weight: bold;
 }
 
 .preview pre::before,
