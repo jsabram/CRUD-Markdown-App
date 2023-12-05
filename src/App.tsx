@@ -1,5 +1,7 @@
 import ReactDOM from 'react-dom';
 import { useEffect, useContext } from 'react';
+import { useDispatch } from 'react-redux';
+import { setUserData } from './store/root-slice';
 import { useMediaQuery } from '@uidotdev/usehooks';
 import { useSwipeable } from 'react-swipeable';
 import { useTheme } from './hooks/useTheme';
@@ -9,6 +11,10 @@ import Main from './components/main/Main';
 import AsideMenu from './components/aside/AsideMenu';
 import DeleteDocModal from './components/modal/DeleteDocModal';
 import CreateDocModal from './components/modal/CreateDocModal';
+import { db } from './config/firebase';
+import { getDocs, collection, doc, setDoc, getDoc } from 'firebase/firestore';
+
+import { createNewUserHandler } from './utils/firebase-utils';
 
 const App = () => {
 	const {
@@ -19,6 +25,8 @@ const App = () => {
 		isDeleteModalOpen,
 		isCreateModalOpen,
 	} = useContext(AppContext);
+
+	const dispatch = useDispatch();
 
 	const isTablet = useMediaQuery('(min-width: 768px)');
 
@@ -31,12 +39,47 @@ const App = () => {
 
 	useEffect(() => {
 		const theme = checkThemeHandler();
-
 		if (theme === 'dark') {
 			toggleThemeHandler();
 		}
-
 		isTablet && changeViewHandler('comparison');
+
+		// firebase
+		const getDocumentsList = async () => {
+			let userId;
+
+			if (localStorage.getItem('userId')) {
+				userId = localStorage.getItem('userId');
+			} else {
+				const {
+					newUserId,
+					userInitialDoc,
+					initialDocument,
+				} = createNewUserHandler();
+
+				userId = newUserId;
+				await setDoc(userInitialDoc, initialDocument);
+			}
+
+			const userRef = doc(db, 'markdown', userId!);
+			const user = await getDoc(userRef);
+			const storedUserId = user.id; // current user ID
+
+			const userDocs = await getDocs(collection(userRef, 'userDocuments'));
+			const storedDocs = userDocs.docs.map((doc) => ({
+				...doc.data(),
+				id: doc.id,
+			}));
+
+			dispatch(
+				setUserData({
+					id: storedUserId,
+					docs: storedDocs,
+				})
+			);
+		};
+
+		getDocumentsList();
 	}, []);
 
 	return (

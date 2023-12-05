@@ -30,7 +30,6 @@ const Preview = () => {
 			.use(rehypeStringify)
 			.process(md);
 
-		console.log(html.value);
 		document.querySelector('#preview')!.innerHTML = html.value.toString();
 	};
 
