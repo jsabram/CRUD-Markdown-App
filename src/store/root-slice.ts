@@ -2,6 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 interface DocumentObj {
 	id: string;
+	createdAt: string;
+	title: string;
 	body: string;
 }
 

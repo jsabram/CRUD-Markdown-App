@@ -87,12 +87,3 @@ export interface ModalButtonsProps {
 }
 
 export interface ModalProps extends ModalMessageProps, ModalBackgroundProps {}
-
-// firebase
-
-export interface DocumentObj {
-	id: string;
-	createdAt: string;
-	title: string;
-	body: string;
-}

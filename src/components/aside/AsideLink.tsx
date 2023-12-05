@@ -7,7 +7,7 @@ const AsideLink: React.FC<LinkProps> = ({ id, title, docName }) => {
 			<DocumentIcon className='link-icon' />
 			<div className='ms-3'>
 				<h3>{title}</h3>
-				<p>{docName}</p>
+				<p>{docName}.md</p>
 			</div>
 		</a>
 	);

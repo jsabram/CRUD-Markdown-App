@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { useAppSelector } from '../../store/typed-hooks';
 import { AppContext } from '../../context/AppContext';
 import ColoredButton from '../reusable/ColoredButton';
 import PencilIcon from '../../assets/icons/pencil-icon.svg';
@@ -6,22 +7,10 @@ import AsideLink from './AsideLink';
 import ThemeToggler from './ThemeToggler';
 import IconButton from '../reusable/IconButton';
 import ViewOptions from './ViewOptions';
-import Modal from '../modal/Modal';
-
-const dummyMenuLinks = [
-	{
-		id: 'document-one',
-		title: '27 April 2023',
-		docName: 'welcome.md',
-	},
-	{
-		id: 'document-two',
-		title: '10 September 2023',
-		docName: 'test.md',
-	},
-];
 
 const AsideMenu = () => {
+	const userDocs = useAppSelector((state) => state.userDocs);
+
 	const {
 		isMenuOpen,
 		toggleOptionsHandler,
@@ -56,12 +45,12 @@ const AsideMenu = () => {
 				text='Create a document'
 			/>
 			<ul className='aside-links py-3 my-4 border-t-[1px] border-b-[1px] border-textGray200 overflow-y-scroll md:my-8'>
-				{dummyMenuLinks.map((dummyLink, idx) => (
+				{userDocs.map((userDoc) => (
 					<AsideLink
-						key={idx}
-						id={dummyLink.id}
-						title={dummyLink.title}
-						docName={dummyLink.docName}
+						key={userDoc.id}
+						id={userDoc.id}
+						title={userDoc.createdAt}
+						docName={userDoc.title}
 					/>
 				))}
 			</ul>
