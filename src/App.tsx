@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom';
 import { useEffect, useContext } from 'react';
 import { useDispatch } from 'react-redux';
-import { setUserData } from './store/root-slice';
+import { setUserData, setOpenDoc } from './store/root-slice';
 import { useMediaQuery } from '@uidotdev/usehooks';
 import { useSwipeable } from 'react-swipeable';
 import { useTheme } from './hooks/useTheme';
@@ -44,7 +44,6 @@ const App = () => {
 		}
 		isTablet && changeViewHandler('comparison');
 
-		// firebase
 		const getDocumentsList = async () => {
 			let userId;
 
@@ -70,6 +69,12 @@ const App = () => {
 				...doc.data(),
 				id: doc.id,
 			}));
+
+			if (localStorage.getItem('openDoc')) {
+				dispatch(setOpenDoc(localStorage.getItem('openDoc')));
+			} else {
+				dispatch(setOpenDoc(storedDocs[0].id));
+			}
 
 			dispatch(
 				setUserData({

@@ -9,12 +9,14 @@ interface StateObj {
 	editorValue: string;
 	userId: string;
 	userDocs: DocumentObj[];
+	openDoc: string;
 }
 
 const initialState: StateObj = {
 	editorValue: '',
 	userId: 'string',
 	userDocs: [],
+	openDoc: '',
 };
 
 const RootSlice = createSlice({
@@ -28,8 +30,12 @@ const RootSlice = createSlice({
 			state.userId = action.payload.id;
 			state.userDocs = action.payload.docs;
 		},
+		setOpenDoc: (state, action) => {
+			state.openDoc = action.payload;
+			localStorage.setItem('openDoc', action.payload);
+		},
 	},
 });
 
-export const { setEditorValue, setUserData } = RootSlice.actions;
+export const { setEditorValue, setUserData, setOpenDoc } = RootSlice.actions;
 export default RootSlice.reducer;
