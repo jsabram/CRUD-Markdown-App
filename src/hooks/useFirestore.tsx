@@ -10,6 +10,7 @@ import {
 	getDocs,
 	setDoc,
 	addDoc,
+	updateDoc,
 	deleteDoc,
 	query,
 	orderBy,
@@ -110,6 +111,16 @@ export const useFirestore = () => {
 		}
 	};
 
+	const saveDocument = async (id: string, updatedContent: string) => {
+		const { userCollection } = getUserCollection(storedId);
+
+		if (userCollection !== null) {
+			const docToUpdate = doc(userCollection, id);
+			await updateDoc(docToUpdate, { body: updatedContent });
+			getDocumentsList();
+		}
+	};
+
 	const deleteDocument = async (id: string) => {
 		const { userCollection } = getUserCollection(storedId);
 
@@ -120,5 +131,10 @@ export const useFirestore = () => {
 		}
 	};
 
-	return { getDocumentsList, createDocument, deleteDocument };
+	return {
+		getDocumentsList,
+		createDocument,
+		saveDocument,
+		deleteDocument,
+	};
 };

@@ -1,4 +1,6 @@
 import { useContext } from 'react';
+import { useAppSelector } from '../../store/typed-hooks';
+import { useFirestore } from '../../hooks/useFirestore';
 import { AppContext } from '../../context/AppContext';
 import IconButton from '../reusable/IconButton';
 import ColoredButton from '../reusable/ColoredButton';
@@ -9,16 +11,23 @@ import DeleteIcon from '../../assets/icons/icon-components/DeleteIcon';
 import Nav from '../nav/Nav';
 
 const Header = () => {
+	const { editorValue, openDoc } = useAppSelector((state) => ({
+		editorValue: state.editorValue,
+		openDoc: state.openDoc,
+	}));
+
 	const { isMenuOpen, toggleMenuHandler, openDeleteModalHandler } = useContext(
 		AppContext
 	);
+
+	const { saveDocument } = useFirestore();
 
 	const changeMenuHandler = () => {
 		toggleMenuHandler();
 	};
 
-	const dummySaveChanges = () => {
-		console.log('changes saved!');
+	const saveChangesHandler = () => {
+		saveDocument(openDoc, editorValue);
 	};
 
 	const openModalHandler = () => {
@@ -50,7 +59,7 @@ const Header = () => {
 				</IconButton>
 				<ColoredButton
 					id='save'
-					onClick={dummySaveChanges}
+					onClick={saveChangesHandler}
 					src={SaveIcon}
 					text='Save Changes'
 				/>
