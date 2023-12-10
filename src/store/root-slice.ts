@@ -1,22 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-
-interface DocumentObj {
-	id: string;
-	createdAt: string;
-	title: string;
-	body: string;
-}
-
-interface StateObj {
-	editorValue: string;
-	userId: string;
-	userDocs: DocumentObj[];
-	openDoc: string;
-}
+import { StateObj } from '../@types/component-types';
 
 const initialState: StateObj = {
 	editorValue: '',
-	userId: 'string',
+	userId: '',
 	userDocs: [],
 	openDoc: '',
 };

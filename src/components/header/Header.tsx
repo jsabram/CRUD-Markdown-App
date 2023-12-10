@@ -21,7 +21,7 @@ const Header = () => {
 		console.log('changes saved!');
 	};
 
-	const deleteDocumentHandler = () => {
+	const openModalHandler = () => {
 		openDeleteModalHandler();
 	};
 
@@ -45,7 +45,7 @@ const Header = () => {
 				<Nav />
 			</div>
 			<div className='flex items-center'>
-				<IconButton className='me-3 lg:me-4' onClick={deleteDocumentHandler}>
+				<IconButton className='me-3 lg:me-4' onClick={openModalHandler}>
 					<DeleteIcon />
 				</IconButton>
 				<ColoredButton

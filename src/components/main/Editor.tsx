@@ -10,8 +10,7 @@ const Editor = () => {
 	const [defaultValue, setDefaultValue] = useState('');
 	const [pressedKeys, setPressedKeys] = useState<string[]>([]);
 
-	const { editorValue, userDocs, openDoc } = useAppSelector((state) => ({
-		editorValue: state.editorValue,
+	const { userDocs, openDoc } = useAppSelector((state) => ({
 		userDocs: state.userDocs,
 		openDoc: state.openDoc,
 	}));
@@ -57,6 +56,9 @@ const Editor = () => {
 		if (defaultDoc) {
 			setDefaultValue(defaultDoc.body);
 			dispatch(setEditorValue(defaultDoc.body));
+		} else {
+			setDefaultValue('');
+			dispatch(setEditorValue(''));
 		}
 	}, [userDocs, openDoc]);
 

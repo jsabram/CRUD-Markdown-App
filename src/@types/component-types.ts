@@ -87,3 +87,19 @@ export interface ModalButtonsProps {
 }
 
 export interface ModalProps extends ModalMessageProps, ModalBackgroundProps {}
+
+// store
+
+interface DocumentObj {
+	id: string;
+	createdAt: string;
+	title: string;
+	body: string;
+}
+
+export interface StateObj {
+	editorValue: string;
+	userId: string;
+	userDocs: DocumentObj[];
+	openDoc: string;
+}
