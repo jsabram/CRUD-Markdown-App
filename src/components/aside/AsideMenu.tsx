@@ -44,16 +44,18 @@ const AsideMenu = () => {
 				onClick={createDocumentHandler}
 				text='Create a document'
 			/>
-			<ul className='aside-links py-3 my-4 border-t-[1px] border-b-[1px] border-textGray200 overflow-y-scroll md:my-8'>
-				{userDocs.map((userDoc) => (
-					<AsideLink
-						key={userDoc.id}
-						id={userDoc.id}
-						title={userDoc.createdAt}
-						docName={userDoc.title}
-					/>
-				))}
-			</ul>
+			{userDocs.length > 0 && (
+				<ul className='aside-links py-3 my-4 border-t-[1px] border-b-[1px] border-textGray200 overflow-y-scroll md:my-8'>
+					{userDocs.map((userDoc) => (
+						<AsideLink
+							key={userDoc.id}
+							id={userDoc.id}
+							title={userDoc.createdAt}
+							docName={userDoc.title}
+						/>
+					))}
+				</ul>
+			)}
 			<div className='absolute right-4 bottom-10 left-4 flex items-center justify-between'>
 				<ThemeToggler />
 				<IconButton className='relative' onClick={viewOptionsHandler}>

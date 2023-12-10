@@ -9,7 +9,11 @@ import {
 	getDoc,
 	getDocs,
 	setDoc,
+	addDoc,
 	deleteDoc,
+	query,
+	orderBy,
+	Timestamp,
 } from 'firebase/firestore';
 import { formattedDate } from '../utils/date';
 
@@ -32,6 +36,7 @@ export const useFirestore = () => {
 
 		const initialDocStructure = {
 			id: nanoid(),
+			timestamp: Timestamp.now(),
 			createdAt: formattedDate,
 			title: 'welcome',
 			body:
@@ -62,11 +67,16 @@ export const useFirestore = () => {
 
 		const { userRef, userCollection } = getUserCollection(userId);
 
-		const userDocuments = await getDocs(userCollection);
-		const formattedDocuments = userDocuments.docs.map((doc) => ({
-			...doc.data(),
-			id: doc.id,
-		}));
+		const userDocuments = await getDocs(
+			query(userCollection, orderBy('timestamp', 'desc'))
+		);
+		const formattedDocuments = userDocuments.docs.map((doc) => {
+			const { timestamp, ...rest } = doc.data();
+			return {
+				...rest,
+				id: doc.id,
+			};
+		});
 
 		const user = await getDoc(userRef);
 		const storedUserId = user.id;
@@ -85,6 +95,21 @@ export const useFirestore = () => {
 		);
 	};
 
+	const createDocument = async (title: string) => {
+		const { userCollection } = getUserCollection(storedId);
+
+		if (userCollection !== null) {
+			await addDoc(userCollection, {
+				id: nanoid(),
+				timestamp: Timestamp.now(),
+				createdAt: formattedDate,
+				title,
+				body: '',
+			});
+			getDocumentsList();
+		}
+	};
+
 	const deleteDocument = async (id: string) => {
 		const { userCollection } = getUserCollection(storedId);
 
@@ -95,5 +120,5 @@ export const useFirestore = () => {
 		}
 	};
 
-	return { getDocumentsList, deleteDocument };
+	return { getDocumentsList, createDocument, deleteDocument };
 };

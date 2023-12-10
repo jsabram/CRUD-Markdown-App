@@ -1,4 +1,5 @@
 import { useState, useContext } from 'react';
+import { useFirestore } from '../../hooks/useFirestore';
 import { AppContext } from '../../context/AppContext';
 import Modal from './Modal';
 import ModalButtons from './ModalButtons';
@@ -8,8 +9,10 @@ const CreateDocModal = () => {
 
 	const { closeCreateModalHandler } = useContext(AppContext);
 
+	const { createDocument } = useFirestore();
+
 	const createDocumentHandler = () => {
-		console.log('Create document');
+		createDocument(title);
 		setTitle('');
 		closeCreateModalHandler();
 	};
