@@ -7,12 +7,11 @@ import SectionHeader from '../reusable/SectionHeader';
 import ResizableBox from '../reusable/ResizableBox';
 
 const Editor = () => {
-	const [defaultValue, setDefaultValue] = useState('');
 	const [pressedKeys, setPressedKeys] = useState<string[]>([]);
 
 	const { userDocs, openDoc } = useAppSelector((state) => ({
 		userDocs: state.userDocs,
-		openDoc: state.openDoc,
+		openDoc: state.openDoc
 	}));
 
 	const { selectedView } = useContext(AppContext);
@@ -52,16 +51,12 @@ const Editor = () => {
 	};
 
 	useEffect(() => {
-		const defaultDoc = userDocs.find((userDoc) => userDoc.id === openDoc);
-		if (defaultDoc) {
-			setDefaultValue(defaultDoc.body);
-			dispatch(setEditorValue(defaultDoc.body));
-			dispatch(setSavedValue(defaultDoc.body));
-		} else {
-			setDefaultValue('');
-			dispatch(setEditorValue(''));
-			dispatch(setSavedValue(''));
-		}
+		const content = userDocs.find((doc) => doc.id === openDoc);
+		const textarea = document.querySelector('#editor') as HTMLTextAreaElement;
+		textarea!.value = content!.body;
+
+		dispatch(setEditorValue(content!.body));
+		dispatch(setSavedValue(content!.body));
 	}, [userDocs, openDoc]);
 
 	return (
@@ -74,11 +69,11 @@ const Editor = () => {
 				<>
 					<SectionHeader sectionTitle='Editor' />
 					<textarea
+						id='editor'
 						className='w-full h-full px-8 pt-10 pb-2 me-20 bg-white outline-none border-none font-editor caret-primary resize-none dark:bg-darkGray500 dark:text-textGray100'
 						onChange={editorValueHandler}
 						onKeyDown={deleteAllHandler}
 						onInput={deleteOnMobileHandler}
-						defaultValue={defaultValue}
 					></textarea>
 				</>
 			</ResizableBox>

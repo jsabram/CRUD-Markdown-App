@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { setOpenDoc } from '../../store/root-slice';
+import { setOpenDoc, setEditorValue } from '../../store/root-slice';
 import { LinkProps } from '../../@types/component-types';
 import DocumentIcon from '../../assets/icons/icon-components/DocumentIcon';
 
