@@ -1,3 +1,4 @@
+import { useAppSelector } from '../../store/typed-hooks';
 import { useDispatch } from 'react-redux';
 import { setOpenDoc } from '../../store/root-slice';
 import { LinkProps } from '../../@types/component-types';
@@ -6,6 +7,8 @@ import IconButton from '../reusable/IconButton';
 import CloseIcon from '../../assets/icons/icon-components/CloseIcon';
 
 const NavLink: React.FC<LinkProps> = ({ id, docName }) => {
+	const openDoc = useAppSelector((state) => state.openDoc);
+
 	const dispatch = useDispatch();
 
 	const selectDocumentHandler = () => {
@@ -26,7 +29,9 @@ const NavLink: React.FC<LinkProps> = ({ id, docName }) => {
 			</div>
 			<div className='ms-3'>
 				<h3 className='hidden lg:block'>Document name</h3>
-				<p>{docName}</p>
+				<p className={id === openDoc ? 'text-primary' : 'text-white'}>
+					{docName}
+				</p>
 			</div>
 			<IconButton className='ms-3' onClick={closeTabHandler}>
 				<CloseIcon />

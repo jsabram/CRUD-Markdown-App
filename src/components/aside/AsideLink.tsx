@@ -12,12 +12,9 @@ const AsideLink: React.FC<LinkProps> = ({ id, title, docName }) => {
 		dispatch(setOpenDoc(id));
 	};
 
-	console.log(id === openDoc);
-	console.log(openDoc);
-
 	return (
 		<div
-			className={`link-element document-link aside-link rounded-lg outline-none cursor-pointer ${
+			className={`link-element document-link aside-link rounded-lg outline-none cursor-pointer transition-colors duration-300 ${
 				id === openDoc && 'bg-darkGray100'
 			}`}
 			onClick={selectDocumentHandler}
@@ -25,7 +22,7 @@ const AsideLink: React.FC<LinkProps> = ({ id, title, docName }) => {
 			<DocumentIcon className='link-icon' />
 			<div className='ms-3'>
 				<h3>{title}</h3>
-				<p>{docName}.md</p>
+				<p className='text-white'>{docName}.md</p>
 			</div>
 		</div>
 	);
