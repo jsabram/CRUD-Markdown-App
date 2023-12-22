@@ -1,5 +1,7 @@
 import { useContext } from 'react';
 import { useAppSelector } from '../../store/typed-hooks';
+import { useDispatch } from 'react-redux';
+import { setSavedValue } from '../../store/root-slice';
 import { useFirestore } from '../../hooks/useFirestore';
 import { AppContext } from '../../context/AppContext';
 import IconButton from '../reusable/IconButton';
@@ -8,17 +10,24 @@ import MenuIcon from '../../assets/icons/menu-icon.svg';
 import CloseIcon from '../../assets/icons/close-icon.svg';
 import SaveIcon from '../../assets/icons/save-icon.svg';
 import DeleteIcon from '../../assets/icons/icon-components/DeleteIcon';
+import DownloadIcon from '../../assets/icons/download-icon.svg';
 import Nav from '../nav/Nav';
 
 const Header = () => {
-	const { editorValue, openDoc } = useAppSelector((state) => ({
-		editorValue: state.editorValue,
-		openDoc: state.openDoc,
-	}));
+	const { editorValue, savedValue, openDoc, userDocs } = useAppSelector(
+		(state) => ({
+			editorValue: state.editorValue,
+			savedValue: state.savedValue,
+			openDoc: state.openDoc,
+			userDocs: state.userDocs,
+		})
+	);
 
 	const { isMenuOpen, toggleMenuHandler, openDeleteModalHandler } = useContext(
 		AppContext
 	);
+
+	const dispatch = useDispatch();
 
 	const { saveDocument } = useFirestore();
 
@@ -27,7 +36,23 @@ const Header = () => {
 	};
 
 	const saveChangesHandler = () => {
+		dispatch(setSavedValue(editorValue));
 		saveDocument(openDoc, editorValue);
+	};
+
+	const downloadFileHandler = () => {
+		const downloadedFile = userDocs.find((doc) => doc.id === openDoc);
+
+		if (downloadedFile) {
+			const file = new Blob([downloadedFile.body], { type: 'text/plain' });
+
+			const anchor = document.createElement('a');
+			anchor.href = URL.createObjectURL(file);
+			anchor.download = `${downloadedFile.title}.md`;
+
+			document.body.appendChild(anchor);
+			anchor.click();
+		}
 	};
 
 	const openModalHandler = () => {
@@ -59,9 +84,13 @@ const Header = () => {
 				</IconButton>
 				<ColoredButton
 					id='save'
-					onClick={saveChangesHandler}
-					src={SaveIcon}
-					text='Save Changes'
+					onClick={
+						editorValue === savedValue
+							? downloadFileHandler
+							: saveChangesHandler
+					}
+					src={editorValue === savedValue ? DownloadIcon : SaveIcon}
+					text={editorValue === savedValue ? 'Download' : 'Save Changes'}
 				/>
 			</div>
 		</header>

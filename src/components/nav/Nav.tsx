@@ -1,22 +1,17 @@
+import { useAppSelector } from '../../store/typed-hooks';
 import NavLink from './NavLink';
 
-const dummyMenuLinks = [
-	{
-		id: 'document-one',
-		docName: 'welcome.md',
-	},
-	{
-		id: 'document-one',
-		docName: 'welcome.md',
-	},
-];
-
 const Nav = () => {
+	const userDocs = useAppSelector((state) => state.userDocs);
+	const openDocsArray = userDocs;
+
+	console.log(userDocs);
+
 	return (
 		<nav className='pe-4'>
 			<ul className='flex'>
-				{dummyMenuLinks.map((dummyLink, idx) => (
-					<NavLink key={idx} id={dummyLink.id} docName={dummyLink.docName} />
+				{openDocsArray.map((doc) => (
+					<NavLink key={doc.id} id={doc.id} docName={doc.title} />
 				))}
 			</ul>
 		</nav>
