@@ -5,8 +5,6 @@ const Nav = () => {
 	const userDocs = useAppSelector((state) => state.userDocs);
 	const openDocsArray = userDocs;
 
-	console.log(userDocs);
-
 	return (
 		<nav className='pe-4'>
 			<ul className='flex'>

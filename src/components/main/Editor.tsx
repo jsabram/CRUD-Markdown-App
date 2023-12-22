@@ -11,7 +11,7 @@ const Editor = () => {
 
 	const { userDocs, openDoc } = useAppSelector((state) => ({
 		userDocs: state.userDocs,
-		openDoc: state.openDoc
+		openDoc: state.openDoc,
 	}));
 
 	const { selectedView } = useContext(AppContext);
@@ -53,10 +53,16 @@ const Editor = () => {
 	useEffect(() => {
 		const content = userDocs.find((doc) => doc.id === openDoc);
 		const textarea = document.querySelector('#editor') as HTMLTextAreaElement;
-		textarea!.value = content!.body;
 
-		dispatch(setEditorValue(content!.body));
-		dispatch(setSavedValue(content!.body));
+		if (content) {
+			textarea!.value = content!.body;
+
+			dispatch(setEditorValue(content!.body));
+			dispatch(setSavedValue(content!.body));
+		} else {
+			return;
+		}
+		
 	}, [userDocs, openDoc]);
 
 	return (
