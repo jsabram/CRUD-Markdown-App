@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { useAppSelector } from '../../store/typed-hooks';
 import { useDispatch } from 'react-redux';
-import { setEditorValue } from '../../store/root-slice';
+import { setEditorValue, setSavedValue } from '../../store/root-slice';
 import { AppContext } from '../../context/AppContext';
 import SectionHeader from '../reusable/SectionHeader';
 import ResizableBox from '../reusable/ResizableBox';
@@ -56,9 +56,11 @@ const Editor = () => {
 		if (defaultDoc) {
 			setDefaultValue(defaultDoc.body);
 			dispatch(setEditorValue(defaultDoc.body));
+			dispatch(setSavedValue(defaultDoc.body));
 		} else {
 			setDefaultValue('');
 			dispatch(setEditorValue(''));
+			dispatch(setSavedValue(''));
 		}
 	}, [userDocs, openDoc]);
 
