@@ -1,9 +1,11 @@
 import ReactDOM from 'react-dom';
 import { useEffect, useContext } from 'react';
+import { useDispatch } from 'react-redux';
 import { useMediaQuery } from '@uidotdev/usehooks';
 import { useSwipeable } from 'react-swipeable';
 import { useTheme } from './hooks/useTheme';
 import { useFirestore } from './hooks/useFirestore';
+import { setOpenDoc, setActiveDocs } from './store/root-slice';
 import { AppContext } from './context/AppContext';
 import Header from './components/header/Header';
 import Main from './components/main/Main';
@@ -21,6 +23,8 @@ const App = () => {
 		isCreateModalOpen,
 	} = useContext(AppContext);
 
+	const dispatch = useDispatch();
+
 	const isTablet = useMediaQuery('(min-width: 768px)');
 
 	const swipeHandlers = useSwipeable({
@@ -32,15 +36,24 @@ const App = () => {
 
 	const { getDocumentsList } = useFirestore();
 
-	
 	useEffect(() => {
 		const theme = checkThemeHandler();
 		if (theme === 'dark') {
 			toggleThemeHandler();
 		}
-		
+
 		isTablet && changeViewHandler('comparison');
 		getDocumentsList();
+
+		if (localStorage.getItem('openDoc')) {
+			dispatch(setOpenDoc(localStorage.getItem('openDoc')));
+		}
+
+		if (localStorage.getItem('activeDocs')) {
+			const formattedArray = JSON.parse(localStorage.getItem('activeDocs')!);
+
+			dispatch(setActiveDocs(formattedArray));
+		}
 	}, []);
 
 	return (

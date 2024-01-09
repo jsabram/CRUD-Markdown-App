@@ -34,9 +34,8 @@ const RootSlice = createSlice({
 			if (state.activeDocs.length === 0) {
 				updatedArray = action.payload;
 			} else if (
-				!state.activeDocs.find(
-					(doc) => (doc.id === action.payload.id)
-				)
+				state.activeDocs.length > 0 &&
+				state.activeDocs.find((doc) => doc.id === action.payload.id)
 			) {
 				updatedArray = state.activeDocs;
 			} else {

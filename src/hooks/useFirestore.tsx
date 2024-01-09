@@ -20,6 +20,7 @@ import { formattedDate } from '../utils/date';
 
 export const useFirestore = () => {
 	const storedId = useAppSelector((state) => state.userId);
+	const userDocs = useAppSelector((state) => state.userDocs);
 
 	const dispatch = useDispatch();
 
@@ -63,7 +64,18 @@ export const useFirestore = () => {
 			const { newUserId, initialDoc, initialDocStructure } = createNewUser();
 
 			await setDoc(initialDoc, initialDocStructure);
+
 			userId = newUserId;
+
+			dispatch(setOpenDoc(initialDoc.id));
+			dispatch(
+				setActiveDocs([
+					{
+						id: initialDoc.id,
+						title: 'welcome.md',
+					},
+				])
+			);
 		}
 
 		const { userRef, userCollection } = getUserCollection(userId);
@@ -82,29 +94,6 @@ export const useFirestore = () => {
 		const user = await getDoc(userRef);
 		const storedUserId = user.id;
 
-		if (localStorage.getItem('openDoc')) {
-			dispatch(setOpenDoc(localStorage.getItem('openDoc')));
-		} else {
-			dispatch(setOpenDoc(formattedDocuments[0].id));
-		}
-
-		if (localStorage.getItem('activeDocs')) {
-			dispatch(
-				setActiveDocs(JSON.parse(localStorage.getItem('activeDocs')!))
-			);
-		} else {
-			if ('title' in formattedDocuments[0]) {
-				dispatch(
-					setActiveDocs([
-						{
-							id: formattedDocuments[0].id,
-							title: formattedDocuments[0].title,
-						},
-					])
-				);
-			}
-		}
-
 		dispatch(
 			setUserData({
 				id: storedUserId,
@@ -115,15 +104,28 @@ export const useFirestore = () => {
 
 	const createDocument = async (title: string) => {
 		const { userCollection } = getUserCollection(storedId);
+		let newId = nanoid();
 
 		if (userCollection !== null) {
-			await addDoc(userCollection, {
-				id: nanoid(),
+			const docRef = await addDoc(userCollection, {
+				id: newId,
 				timestamp: Timestamp.now(),
 				createdAt: formattedDate,
 				title,
 				body: '',
 			});
+
+			dispatch(setOpenDoc(docRef.id));
+
+			dispatch(
+				setActiveDocs([
+					{
+						id: docRef.id,
+						title,
+					},
+				])
+			);
+
 			getDocumentsList();
 		}
 	};
