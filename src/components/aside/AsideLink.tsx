@@ -19,7 +19,9 @@ const AsideLink: React.FC<LinkProps> = ({ id, title, docName }) => {
 			}`}
 			onClick={selectDocumentHandler}
 		>
-			<DocumentIcon className='link-icon' />
+			<div>
+				<DocumentIcon className='link-icon' />
+			</div>{' '}
 			<div className='ms-3'>
 				<h3>{title}</h3>
 				<p className='text-white'>{docName}.md</p>

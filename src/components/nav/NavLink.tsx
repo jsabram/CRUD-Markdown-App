@@ -27,9 +27,13 @@ const NavLink: React.FC<LinkProps> = ({ id, docName }) => {
 			>
 				<DocumentIcon className='link-icon' />
 			</div>
-			<div className='ms-3'>
+			<div className='ms-3 w-max'>
 				<h3 className='hidden lg:block'>Document name</h3>
-				<p className={id === openDoc ? 'text-primary' : 'text-white'}>
+				<p
+					className={` ${
+						id === openDoc ? 'text-primary' : 'text-white'
+					}`}
+				>
 					{docName}
 				</p>
 			</div>

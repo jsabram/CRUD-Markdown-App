@@ -1,6 +1,6 @@
 import { useAppSelector } from '../store/typed-hooks';
 import { useDispatch } from 'react-redux';
-import { setOpenDoc, setUserData } from '../store/root-slice';
+import { setOpenDoc, setUserData, setActiveDocs } from '../store/root-slice';
 import { nanoid } from 'nanoid';
 import { db } from '../config/firebase';
 import {
@@ -86,6 +86,23 @@ export const useFirestore = () => {
 			dispatch(setOpenDoc(localStorage.getItem('openDoc')));
 		} else {
 			dispatch(setOpenDoc(formattedDocuments[0].id));
+		}
+
+		if (localStorage.getItem('activeDocs')) {
+			dispatch(
+				setActiveDocs(JSON.parse(localStorage.getItem('activeDocs')!))
+			);
+		} else {
+			if ('title' in formattedDocuments[0]) {
+				dispatch(
+					setActiveDocs([
+						{
+							id: formattedDocuments[0].id,
+							title: formattedDocuments[0].title,
+						},
+					])
+				);
+			}
 		}
 
 		dispatch(

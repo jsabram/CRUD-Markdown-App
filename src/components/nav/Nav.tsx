@@ -1,14 +1,26 @@
+import { useEffect } from 'react';
 import { useAppSelector } from '../../store/typed-hooks';
+import { useDispatch } from 'react-redux';
+import { setActiveDocs } from '../../store/root-slice';
 import NavLink from './NavLink';
 
 const Nav = () => {
-	const userDocs = useAppSelector((state) => state.userDocs);
-	const openDocsArray = userDocs;
+	const activeDocs = useAppSelector((state) => state.activeDocs);
+	const usersDocs = useAppSelector((state) => state.userDocs);
+	const openDoc = useAppSelector((state) => state.openDoc)
+
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		
+		// console.log(localStorage.getItem('activeDocs'));
+		// console.log(activeDocs);
+	}, []);
 
 	return (
 		<nav className='pe-4'>
 			<ul className='flex'>
-				{openDocsArray.map((doc) => (
+				{activeDocs.map((doc) => (
 					<NavLink key={doc.id} id={doc.id} docName={doc.title} />
 				))}
 			</ul>

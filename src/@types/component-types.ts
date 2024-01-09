@@ -97,10 +97,16 @@ interface DocumentObj {
 	body: string;
 }
 
+interface ActiveDocumentObj {
+	id: string;
+	title: string;
+}
+
 export interface StateObj {
 	editorValue: string;
 	savedValue: string;
 	userId: string;
 	userDocs: DocumentObj[];
 	openDoc: string;
+	activeDocs: ActiveDocumentObj[];
 }
