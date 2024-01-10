@@ -6,6 +6,7 @@ import Preview from './Preview';
 
 const Main = () => {
 	const userDocs = useAppSelector((state) => state.userDocs);
+	const openDoc = useAppSelector((state) => state.openDoc);
 
 	const { isMenuOpen, closeMenuHandler, selectedView } = useContext(AppContext);
 
@@ -20,15 +21,23 @@ const Main = () => {
 			}`}
 			onClick={hideMenuHandler}
 		>
-			{userDocs.length > 0 && selectedView === 'editor' && <Editor />}
-			{userDocs.length > 0 && selectedView === 'preview' && <Preview />}
-			{userDocs.length > 0 && selectedView === 'comparison' && (
+			{openDoc ? (
 				<>
-					<Editor />
-					<Preview />
+					{userDocs.length > 0 && selectedView === 'editor' && <Editor />}
+					{userDocs.length > 0 && selectedView === 'preview' && <Preview />}
+					{userDocs.length > 0 && selectedView === 'comparison' && (
+						<>
+							<Editor />
+							<Preview />
+						</>
+					)}
+					{userDocs.length === 0} {}
 				</>
+			) : (
+				<div className='flex justify-center items-center w-full'>
+					<p className='text-textGray200'>Select or create a document to edit and preview its content.</p>
+				</div>
 			)}
-			{userDocs.length === 0} {}
 		</main>
 	);
 };

@@ -79,19 +79,23 @@ const Header = () => {
 				<Nav />
 			</div>
 			<div className='flex items-center'>
-				<IconButton className='me-3 lg:me-4' onClick={openModalHandler}>
-					<DeleteIcon />
-				</IconButton>
-				<ColoredButton
-					id='save'
-					onClick={
-						editorValue === savedValue
-							? downloadFileHandler
-							: saveChangesHandler
-					}
-					src={editorValue === savedValue ? DownloadIcon : SaveIcon}
-					text={editorValue === savedValue ? 'Download' : 'Save Changes'}
-				/>
+				{openDoc && (
+					<>
+						<IconButton className='me-3 lg:me-4' onClick={openModalHandler}>
+							<DeleteIcon />
+						</IconButton>
+						<ColoredButton
+							id='save'
+							onClick={
+								editorValue === savedValue
+									? downloadFileHandler
+									: saveChangesHandler
+							}
+							src={editorValue === savedValue ? DownloadIcon : SaveIcon}
+							text={editorValue === savedValue ? 'Download' : 'Save Changes'}
+						/>
+					</>
+				)}
 			</div>
 		</header>
 	);

@@ -21,7 +21,7 @@ const NavLink: React.FC<LinkProps> = ({ id, docName }) => {
 	const closeTabHandler = () => {
 		const docToClose = activeDocs.findIndex((doc) => doc.id === id);
 		const updatedArray = activeDocs.filter((doc) => doc.id !== id);
-		
+
 		dispatch(setActiveDocs(updatedArray));
 
 		if (id === openDoc) {
@@ -30,13 +30,17 @@ const NavLink: React.FC<LinkProps> = ({ id, docName }) => {
 			} else if (updatedArray.length === 1) {
 				dispatch(setOpenDoc(updatedArray[0].id));
 			} else {
-				return;
+				dispatch(setOpenDoc(''));
 			}
 		}
 	};
 
 	return (
-		<li className='link-element md:border-r-[1px] md:border-textGray200 lg:px-5'>
+		<li
+			className={`link-element transition-colors duration-300 md:border-l-[1px] md:border-textGray200 lg:px-5 ${
+				id === openDoc && 'bg-darkGray100'
+			}`}
+		>
 			<div
 				className='document-link cursor-pointer'
 				onClick={selectDocumentHandler}

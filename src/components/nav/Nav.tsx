@@ -6,7 +6,7 @@ const Nav = () => {
 
 	return (
 		<nav className='pe-4'>
-			<ul className='flex'>
+			<ul className='flex h-[55px] lg:h-[70px]'>
 				{activeDocs.map((doc) => (
 					<NavLink key={doc.id} id={doc.id} docName={doc.title} />
 				))}

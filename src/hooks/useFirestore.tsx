@@ -151,6 +151,7 @@ export const useFirestore = () => {
 
 			const updatedArray = activeDocs.filter((doc) => doc.id !== id);
 			dispatch(setActiveDocs(updatedArray));
+			dispatch(setOpenDoc(''));
 
 			getDocumentsList();
 		}
