@@ -118,7 +118,6 @@ export const useFirestore = () => {
 			});
 
 			dispatch(setOpenDoc(docRef.id));
-
 			dispatch(
 				setActiveDocs([
 					{
@@ -149,6 +148,10 @@ export const useFirestore = () => {
 		if (userCollection !== null) {
 			const docToDelete = doc(userCollection, id);
 			await deleteDoc(docToDelete);
+
+			const updatedArray = activeDocs.filter((doc) => doc.id !== id);
+			dispatch(setActiveDocs(updatedArray));
+
 			getDocumentsList();
 		}
 	};
