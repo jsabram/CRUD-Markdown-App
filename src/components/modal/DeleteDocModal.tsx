@@ -7,6 +7,9 @@ import ModalButtons from './ModalButtons';
 
 const DeleteDocModal = () => {
 	const openDoc = useAppSelector((state) => state.openDoc);
+	const userDoc = useAppSelector((state) => state.userDocs);
+
+	const docToDelete = userDoc.find((doc) => doc.id === openDoc);
 
 	const { closeDeleteModalHandler } = useContext(AppContext);
 
@@ -24,7 +27,9 @@ const DeleteDocModal = () => {
 	return (
 		<Modal
 			title='Delete this document?'
-			message={`Are you sure you want to delete the 'welcome.md' document? This action cannot be undone.`}
+			message={`Are you sure you want to delete the '${
+				docToDelete!.title
+			}.md' document? This action cannot be reversed.`}
 			onCancel={cancelHandler}
 			onConfirm={deleteDocumentHandler}
 		>

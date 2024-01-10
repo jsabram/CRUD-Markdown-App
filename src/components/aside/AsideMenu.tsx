@@ -44,7 +44,7 @@ const AsideMenu = () => {
 				onClick={createDocumentHandler}
 				text='Create a document'
 			/>
-			{userDocs.length > 0 && (
+			{userDocs.length > 0 ? (
 				<ul className='aside-links py-3 my-4 border-t-[1px] border-b-[1px] border-textGray200 overflow-y-scroll md:my-8'>
 					{userDocs.map((userDoc) => (
 						<AsideLink
@@ -55,6 +55,12 @@ const AsideMenu = () => {
 						/>
 					))}
 				</ul>
+			) : (
+				<div className='mt-3 text-center'>
+					<p className='text-textGray200'>
+						Click on the above button to create a document
+					</p>
+				</div>
 			)}
 			<div className='absolute right-4 bottom-10 left-4 flex items-center justify-between'>
 				<ThemeToggler />

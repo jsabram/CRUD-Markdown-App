@@ -34,7 +34,7 @@ const Main = () => {
 					{userDocs.length === 0} {}
 				</>
 			) : (
-				<div className='flex justify-center items-center w-full'>
+				<div className='flex items-center justify-center w-full px-5 text-center'>
 					<p className='text-textGray200'>Select or create a document to edit and preview its content.</p>
 				</div>
 			)}

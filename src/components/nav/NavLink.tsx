@@ -37,7 +37,7 @@ const NavLink: React.FC<LinkProps> = ({ id, docName }) => {
 
 	return (
 		<li
-			className={`link-element transition-colors duration-300 md:border-l-[1px] md:border-textGray200 lg:px-5 ${
+			className={`link-element transition-colors duration-300 border-l-[1px] md:border-textGray200 lg:px-5 ${
 				id === openDoc && 'bg-darkGray100'
 			}`}
 		>
@@ -49,9 +49,7 @@ const NavLink: React.FC<LinkProps> = ({ id, docName }) => {
 			</div>
 			<div className='ms-3 w-max'>
 				<h3 className='hidden lg:block'>Document name</h3>
-				<p className={` ${id === openDoc ? 'text-primary' : 'text-white'}`}>
-					{docName}
-				</p>
+				<p className='text-white'>{docName}</p>
 			</div>
 			<IconButton className='ms-3' onClick={closeTabHandler}>
 				<CloseIcon />
