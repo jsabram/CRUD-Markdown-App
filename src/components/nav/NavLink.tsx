@@ -1,13 +1,16 @@
 import { useAppSelector } from '../../store/typed-hooks';
 import { useDispatch } from 'react-redux';
-import { setOpenDoc } from '../../store/root-slice';
+import { setActiveDocs, setOpenDoc } from '../../store/root-slice';
 import { LinkProps } from '../../@types/component-types';
 import DocumentIcon from '../../assets/icons/icon-components/DocumentIcon';
 import IconButton from '../reusable/IconButton';
 import CloseIcon from '../../assets/icons/icon-components/CloseIcon';
 
 const NavLink: React.FC<LinkProps> = ({ id, docName }) => {
-	const openDoc = useAppSelector((state) => state.openDoc);
+	const { openDoc, activeDocs } = useAppSelector((state) => ({
+		openDoc: state.openDoc,
+		activeDocs: state.activeDocs,
+	}));
 
 	const dispatch = useDispatch();
 
@@ -16,7 +19,20 @@ const NavLink: React.FC<LinkProps> = ({ id, docName }) => {
 	};
 
 	const closeTabHandler = () => {
-		console.log('Tab closed');
+		const docToClose = activeDocs.findIndex((doc) => doc.id === id);
+		const updatedArray = activeDocs.filter((doc) => doc.id !== id);
+		
+		dispatch(setActiveDocs(updatedArray));
+
+		if (id === openDoc) {
+			if (updatedArray.length > 1) {
+				dispatch(setOpenDoc(updatedArray[docToClose].id));
+			} else if (updatedArray.length === 1) {
+				dispatch(setOpenDoc(updatedArray[0].id));
+			} else {
+				return;
+			}
+		}
 	};
 
 	return (
@@ -29,11 +45,7 @@ const NavLink: React.FC<LinkProps> = ({ id, docName }) => {
 			</div>
 			<div className='ms-3 w-max'>
 				<h3 className='hidden lg:block'>Document name</h3>
-				<p
-					className={` ${
-						id === openDoc ? 'text-primary' : 'text-white'
-					}`}
-				>
+				<p className={` ${id === openDoc ? 'text-primary' : 'text-white'}`}>
 					{docName}
 				</p>
 			</div>

@@ -29,21 +29,9 @@ const RootSlice = createSlice({
 			localStorage.setItem('openDoc', action.payload);
 		},
 		setActiveDocs: (state, action) => {
-			let updatedArray = [];
+			state.activeDocs = action.payload;
 
-			if (state.activeDocs.length === 0) {
-				updatedArray = action.payload;
-			} else if (
-				state.activeDocs.length > 0 &&
-				state.activeDocs.find((doc) => doc.id === action.payload.id)
-			) {
-				updatedArray = state.activeDocs;
-			} else {
-				updatedArray = [...action.payload, ...state.activeDocs];
-			}
-
-			state.activeDocs = updatedArray;
-			localStorage.setItem('activeDocs', JSON.stringify(updatedArray));
+			localStorage.setItem('activeDocs', JSON.stringify(action.payload));
 		},
 	},
 });

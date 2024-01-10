@@ -19,8 +19,10 @@ import {
 import { formattedDate } from '../utils/date';
 
 export const useFirestore = () => {
-	const storedId = useAppSelector((state) => state.userId);
-	const userDocs = useAppSelector((state) => state.userDocs);
+	const { storedId, activeDocs } = useAppSelector((state) => ({
+		storedId: state.userId,
+		activeDocs: state.activeDocs,
+	}));
 
 	const dispatch = useDispatch();
 
@@ -123,6 +125,7 @@ export const useFirestore = () => {
 						id: docRef.id,
 						title,
 					},
+					...activeDocs,
 				])
 			);
 
