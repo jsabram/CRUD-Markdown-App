@@ -33,6 +33,17 @@ const RootSlice = createSlice({
 
 			localStorage.setItem('activeDocs', JSON.stringify(action.payload));
 		},
+		updateActiveDocs: (state, action) => {
+			if (state.activeDocs.find((doc) => doc.id === action.payload.id)) {
+				return;
+			} else {
+				const updatedArray = [action.payload, ...state.activeDocs];
+
+				state.activeDocs = updatedArray;
+
+				localStorage.setItem('activeDocs', JSON.stringify(updatedArray));
+			}
+		},
 	},
 });
 
@@ -42,5 +53,6 @@ export const {
 	setUserData,
 	setOpenDoc,
 	setActiveDocs,
+	updateActiveDocs
 } = RootSlice.actions;
 export default RootSlice.reducer;

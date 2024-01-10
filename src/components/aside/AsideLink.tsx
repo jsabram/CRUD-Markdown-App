@@ -1,6 +1,6 @@
 import { useAppSelector } from '../../store/typed-hooks';
 import { useDispatch } from 'react-redux';
-import { setOpenDoc } from '../../store/root-slice';
+import { setOpenDoc, updateActiveDocs } from '../../store/root-slice';
 import { LinkProps } from '../../@types/component-types';
 import DocumentIcon from '../../assets/icons/icon-components/DocumentIcon';
 
@@ -10,6 +10,12 @@ const AsideLink: React.FC<LinkProps> = ({ id, title, docName }) => {
 
 	const selectDocumentHandler = () => {
 		dispatch(setOpenDoc(id));
+		dispatch(
+			updateActiveDocs({
+				id,
+				title: docName,
+			})
+		);
 	};
 
 	return (
