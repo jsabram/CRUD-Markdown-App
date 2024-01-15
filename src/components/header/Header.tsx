@@ -61,7 +61,7 @@ const Header = () => {
 
 	return (
 		<header
-			className={`flex items-center justify-between pe-2 bg-darkGray200 transition-transform duration-300 lg:pe-4 ${
+			className={`flex items-center justify-between pe-2 bg-darkGray100 transition-transform duration-300 lg:pe-4 ${
 				isMenuOpen ? 'translate-x-[250px]' : 'translate-x-0'
 			}`}
 		>
@@ -78,7 +78,7 @@ const Header = () => {
 				</button>
 				<Nav />
 			</div>
-			<div className='flex items-center'>
+			<div className='flex items-center justify-end w-[100px] md:w-[250px]'>
 				{openDoc && (
 					<>
 						<IconButton className='me-3 lg:me-4' onClick={openModalHandler}>

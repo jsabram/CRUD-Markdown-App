@@ -75,7 +75,7 @@ export const useFirestore = () => {
 				setActiveDocs([
 					{
 						id: initialDoc.id,
-						title: 'welcome.md',
+						title: 'welcome',
 					},
 				])
 			);

@@ -87,11 +87,7 @@ const NavLink: React.FC<LinkProps> = ({ id, docName }) => {
 	};
 
 	return (
-		<li
-			className={`link-element transition-colors duration-300 border-l-[1px] md:border-textGray200 lg:px-5 ${
-				id === openDoc && 'bg-darkGray100'
-			}`}
-		>
+		<li className='nav-link link-element overflow-scroll bg-darkGray200 border-l-[1px] transition-colors duration-300 md:border-textGray200 md:overflow-visible lg:px-5'>
 			<div
 				className='document-link cursor-pointer'
 				onClick={selectDocumentHandler}
@@ -105,7 +101,7 @@ const NavLink: React.FC<LinkProps> = ({ id, docName }) => {
 						id='edit_name'
 						className='relative w-full py-1 px-2 bg-transparent border border-primary rounded-lg outline-none text-sm text-textGray200 caret-primary dark:text-textGray100'
 						ref={inputRef}
-						maxLength={20}
+						maxLength={15}
 						autoFocus={isEditing}
 						defaultValue={documentName}
 						onChange={updateNameHandler}
@@ -113,7 +109,10 @@ const NavLink: React.FC<LinkProps> = ({ id, docName }) => {
 						onBlur={closeEditInputHandler}
 					/>
 				) : (
-					<p className='text-white' onClick={openEditInputHandler}>
+					<p
+						className={id === openDoc ? 'text-primary' : 'text-white'}
+						onClick={openEditInputHandler}
+					>
 						{documentName}.md
 					</p>
 				)}
