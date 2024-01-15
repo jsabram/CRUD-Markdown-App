@@ -19,7 +19,7 @@ import {
 import { formattedDate } from '../utils/date';
 
 export const useFirestore = () => {
-	const { storedId, activeDocs, userDocs } = useAppSelector((state) => ({
+	const { storedId, activeDocs } = useAppSelector((state) => ({
 		storedId: state.userId,
 		activeDocs: state.activeDocs,
 		userDocs: state.userDocs,
@@ -133,12 +133,22 @@ export const useFirestore = () => {
 		}
 	};
 
-	const saveDocument = async (id: string, updatedContent: string) => {
+	const updateDocBody = async (id: string, updatedContent: string) => {
 		const { userCollection } = getUserCollection(storedId);
 
 		if (userCollection !== null) {
 			const docToUpdate = doc(userCollection, id);
 			await updateDoc(docToUpdate, { body: updatedContent });
+			getDocumentsList();
+		}
+	};
+
+	const updateDocTitle = async (id: string, updatedTitle: string) => {
+		const { userCollection } = getUserCollection(storedId);
+
+		if (userCollection !== null) {
+			const docToUpdate = doc(userCollection, id);
+			await updateDoc(docToUpdate, { title: updatedTitle });
 			getDocumentsList();
 		}
 	};
@@ -161,7 +171,8 @@ export const useFirestore = () => {
 	return {
 		getDocumentsList,
 		createDocument,
-		saveDocument,
+		updateDocBody,
+		updateDocTitle,
 		deleteDocument,
 	};
 };

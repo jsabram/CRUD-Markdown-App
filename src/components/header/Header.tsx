@@ -29,7 +29,7 @@ const Header = () => {
 
 	const dispatch = useDispatch();
 
-	const { saveDocument } = useFirestore();
+	const { updateDocBody } = useFirestore();
 
 	const changeMenuHandler = () => {
 		toggleMenuHandler();
@@ -37,7 +37,7 @@ const Header = () => {
 
 	const saveChangesHandler = () => {
 		dispatch(setSavedValue(editorValue));
-		saveDocument(openDoc, editorValue);
+		updateDocBody(openDoc, editorValue);
 	};
 
 	const downloadFileHandler = () => {
