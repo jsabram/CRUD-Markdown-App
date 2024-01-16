@@ -87,7 +87,10 @@ const NavLink: React.FC<LinkProps> = ({ id, docName }) => {
 	};
 
 	return (
-		<li className='nav-link link-element overflow-scroll bg-darkGray200 border-l-[1px] transition-colors duration-300 md:border-textGray200 md:overflow-visible lg:px-5'>
+		<li
+			id={id}
+			className='nav-link link-element overflow-scroll bg-darkGray200 border-l-[1px] transition-colors duration-300 md:border-textGray200 md:overflow-visible lg:px-5'
+		>
 			<div
 				className='document-link cursor-pointer'
 				onClick={selectDocumentHandler}

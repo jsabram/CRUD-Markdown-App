@@ -55,7 +55,7 @@ const CreateDocModal = () => {
 	return (
 		<Modal
 			title='Create a document'
-			message={`Create a name for the new document. It must be unique and consist of maximum 20 characters. ${
+			message={`Create a name for the new document. It must be unique and consist of maximum 15 characters. ${
 				isLaptop
 					? 'You can later change it by double clicking on the active tab name.'
 					: ''
@@ -70,7 +70,7 @@ const CreateDocModal = () => {
 					type='text'
 					className='title-input w-full py-2 px-2 bg-transparent border border-primary rounded-lg outline-none text-textGray200 caret-primary dark:text-textGray100'
 					defaultValue={title}
-					maxLength={20}
+					maxLength={15}
 					required={true}
 					onChange={nameHandler}
 				/>

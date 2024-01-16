@@ -1,13 +1,24 @@
+import { useEffect } from 'react';
 import { useAppSelector } from '../../store/typed-hooks';
 import { useMediaQuery } from '@uidotdev/usehooks';
 import NavLink from './NavLink';
 
 const Nav = () => {
-	const activeDocs = useAppSelector((state) => state.activeDocs);
-	const openDoc = useAppSelector((state) => state.openDoc);
+	const { activeDocs, openDoc } = useAppSelector((state) => ({
+		activeDocs: state.activeDocs,
+		openDoc: state.openDoc,
+	}));
 
 	const isMobile = useMediaQuery('(max-width: 768px)');
 	const isTablet = useMediaQuery('(min-width: 768px)');
+
+	useEffect(() => {
+		const activeTab = document.getElementById(openDoc);
+
+		if (activeTab) {
+			activeTab.scrollIntoView({ behavior: 'smooth' });
+		}
+	}, [openDoc]);
 
 	return (
 		<nav className='nav w-full pe-4 overflow-y-hidden overflow-x-scroll ]'>
