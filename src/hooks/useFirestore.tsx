@@ -63,50 +63,52 @@ export const useFirestore = () => {
 		try {
 			let userId = '';
 
-		if (localStorage.getItem('userId')) {
-			userId = localStorage.getItem('userId')!;
-		} else {
-			const { newUserId, initialDoc, initialDocStructure } = createNewUser();
+			if (localStorage.getItem('userId')) {
+				userId = localStorage.getItem('userId')!;
+			} else {
+				const { newUserId, initialDoc, initialDocStructure } = createNewUser();
 
-			await setDoc(initialDoc, initialDocStructure);
+				await setDoc(initialDoc, initialDocStructure);
 
-			userId = newUserId;
+				userId = newUserId;
 
-			dispatch(setOpenDoc(initialDoc.id));
-			dispatch(
-				setActiveDocs([
-					{
-						id: initialDoc.id,
-						title: 'welcome',
-					},
-				])
+				dispatch(setOpenDoc(initialDoc.id));
+				dispatch(
+					setActiveDocs([
+						{
+							id: initialDoc.id,
+							title: 'welcome',
+						},
+					])
+				);
+			}
+
+			const { userRef, userCollection } = getUserCollection(userId);
+
+			const userDocuments = await getDocs(
+				query(userCollection, orderBy('timestamp', 'desc'))
 			);
-		}
+			const formattedDocuments = userDocuments.docs.map((doc) => {
+				const { timestamp, ...rest } = doc.data();
+				return {
+					...rest,
+					id: doc.id,
+				};
+			});
 
-		const { userRef, userCollection } = getUserCollection(userId);
+			const user = await getDoc(userRef);
+			const storedUserId = user.id;
 
-		const userDocuments = await getDocs(
-			query(userCollection, orderBy('timestamp', 'desc'))
-		);
-		const formattedDocuments = userDocuments.docs.map((doc) => {
-			const { timestamp, ...rest } = doc.data();
-			return {
-				...rest,
-				id: doc.id,
-			};
-		});
-
-		const user = await getDoc(userRef);
-		const storedUserId = user.id;
-
-		dispatch(
-			setUserData({
-				id: storedUserId,
-				docs: formattedDocuments,
-			})
-		);
+			dispatch(
+				setUserData({
+					id: storedUserId,
+					docs: formattedDocuments,
+				})
+			);
 		} catch {
-			toast('The application failed loading data from the server. Please try again later.')
+			toast.error(
+				'The application failed loading data from the server. Please try again later.'
+			);
 		}
 	};
 
@@ -138,7 +140,7 @@ export const useFirestore = () => {
 				getDocumentsList();
 			}
 		} catch {
-			toast(
+			toast.error(
 				'An error occured while creating the file. Please try again later.'
 			);
 		}
@@ -153,10 +155,12 @@ export const useFirestore = () => {
 				await updateDoc(docToUpdate, { body: updatedContent });
 				getDocumentsList();
 
-				toast('Document saved!');
+				toast.success('Document saved!');
 			}
 		} catch {
-			toast('An error occured while saving the file. Please try again later.');
+			toast.error(
+				'An error occured while saving the file. Please try again later.'
+			);
 		}
 	};
 
@@ -166,13 +170,28 @@ export const useFirestore = () => {
 
 			if (userCollection !== null) {
 				const docToUpdate = doc(userCollection, id);
+
+				const docSnapshot = await getDoc(docToUpdate);
+
+				if (docSnapshot.exists()) {
+					const docData = docSnapshot.data();
+
+					if ('title' in docData) {
+						const currentTitle = docData.title;
+
+						if (currentTitle === updatedTitle) {
+							return;
+						}
+					}
+				}
+
 				await updateDoc(docToUpdate, { title: updatedTitle });
 				getDocumentsList();
 
-				toast('Title changed!');
+				toast.success('Title changed!');
 			}
 		} catch {
-			toast(
+			toast.error(
 				'An error occured while changing the title. Please try again later.'
 			);
 		}
@@ -192,10 +211,10 @@ export const useFirestore = () => {
 
 				getDocumentsList();
 
-				toast('Document deleted!');
+				toast.success('Document deleted!');
 			}
 		} catch {
-			toast(
+			toast.error(
 				'An error occured while deleting the file. Please try again later.'
 			);
 		}

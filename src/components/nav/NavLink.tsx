@@ -5,6 +5,7 @@ import { useMediaQuery } from '@uidotdev/usehooks';
 import { useFirestore } from '../../hooks/useFirestore';
 import { setActiveDocs, setOpenDoc } from '../../store/root-slice';
 import { LinkProps } from '../../@types/component-types';
+import { toast } from 'react-toastify';
 import DocumentIcon from '../../assets/icons/icon-components/DocumentIcon';
 import IconButton from '../reusable/IconButton';
 import CloseIcon from '../../assets/icons/icon-components/CloseIcon';
@@ -60,9 +61,10 @@ const NavLink: React.FC<LinkProps> = ({ id, docName }) => {
 
 		if (inputRef.current) {
 			if (specialCharacters.test(inputRef.current.value)) {
-				console.log('No special chars');
 				inputRef.current.value = inputRef.current.value.slice(0, -1);
-				return;
+				
+				toast.warn('Special characters are not allowed')
+				toast.clearWaitingQueue()
 			} else {
 				setEditedName(inputRef.current.value);
 			}

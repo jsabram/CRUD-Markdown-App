@@ -3,6 +3,7 @@ import { useAppSelector } from '../../store/typed-hooks';
 import { useMediaQuery } from '@uidotdev/usehooks';
 import { useFirestore } from '../../hooks/useFirestore';
 import { AppContext } from '../../context/AppContext';
+import { toast } from 'react-toastify';
 import Modal from './Modal';
 import ModalButtons from './ModalButtons';
 
@@ -36,8 +37,10 @@ const CreateDocModal = () => {
 			const specialCharacters = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
 
 			if (specialCharacters.test(inputRef.current.value)) {
-				console.log('No special chars');
 				inputRef.current.value = inputRef.current.value.slice(0, -1);
+
+				toast.warn('Special characters are not allowed');
+				toast.clearWaitingQueue();
 			}
 
 			setTitle(inputRef.current.value);

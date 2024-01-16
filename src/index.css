@@ -42,6 +42,12 @@ path {
 	transition: stroke 0.3s;
 }
 
+.Toastify__close-button {
+	svg {
+		fill: var(--text-gray-200);
+	}
+}
+
 .nav {
 	width: auto;
 	max-width: calc(100vw - 135px);

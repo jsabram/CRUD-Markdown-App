@@ -7,7 +7,7 @@ import { useTheme } from './hooks/useTheme';
 import { useFirestore } from './hooks/useFirestore';
 import { setOpenDoc, setActiveDocs } from './store/root-slice';
 import { AppContext } from './context/AppContext';
-import { ToastContainer } from 'react-toastify';
+import { Slide, ToastContainer } from 'react-toastify';
 import Header from './components/header/Header';
 import Main from './components/main/Main';
 import AsideMenu from './components/aside/AsideMenu';
@@ -80,7 +80,14 @@ const App = () => {
 						document.getElementById('modal')!
 					)}
 			</div>
-			<ToastContainer />
+			<ToastContainer
+				role='alert'
+				transition={Slide}
+				autoClose={2500}
+				limit={1}
+				className='toast'
+				toastClassName='bg-lightGray font-regular text-textGray200 dark:bg-darkGray200'
+			/>
 		</>
 	);
 };
