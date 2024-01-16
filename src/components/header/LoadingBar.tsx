@@ -15,15 +15,19 @@ const LoadingBar = () => {
 				repeat: -1,
 			}
 		);
-	}, []);
+	}, [isMobile]);
 
 	return (
 		<div
 			className={`fixed top-0 right-0 left-0 bg-transparent ${
-				isMobile ? 'h-[2px]' : 'h-[5px'
+				isMobile ? 'h-[2px]' : 'h-[5px]'
 			}`}
 		>
-			<div className={`loading-bar h-full bg-primary ${isMobile ? 'w-28' : 'w-40'}`}></div>
+			<div
+				className={`loading-bar h-full bg-primary ${
+					isMobile ? 'w-28' : 'w-40'
+				}`}
+			></div>
 		</div>
 	);
 };

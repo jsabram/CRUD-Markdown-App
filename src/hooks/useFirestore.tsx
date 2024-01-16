@@ -117,7 +117,7 @@ export const useFirestore = () => {
 			dispatch(setAppState('error'));
 
 			toast.error(
-				'The application failed loading data from the server. Please try again later.'
+				'The application has failed loading data from the server. Please try again later.'
 			);
 		}
 	};
@@ -213,11 +213,21 @@ export const useFirestore = () => {
 
 			if (userCollection !== null) {
 				const docToDelete = doc(userCollection, id);
+
 				await deleteDoc(docToDelete);
 
 				const updatedArray = activeDocs.filter((doc) => doc.id !== id);
+				const indexToDelete = activeDocs.findIndex((doc) => doc.id === id);
+
 				dispatch(setActiveDocs(updatedArray));
-				dispatch(setOpenDoc(''));
+
+				if (updatedArray[indexToDelete]) {
+					dispatch(setOpenDoc(updatedArray[indexToDelete].id));
+				} else if (updatedArray[indexToDelete - 1]) {
+					dispatch(setOpenDoc(updatedArray[indexToDelete - 1].id));
+				} else {
+					dispatch(setOpenDoc(''));
+				}
 
 				getDocumentsList();
 
