@@ -13,7 +13,7 @@ const CreateDocModal = () => {
 
 	const inputRef = useRef<HTMLInputElement | null>(null);
 
-	const { closeCreateModalHandler } = useContext(AppContext);
+	const { closeCreateModalHandler, closeMenuHandler } = useContext(AppContext);
 
 	const userDocs = useAppSelector((state) => state.userDocs);
 
@@ -26,6 +26,7 @@ const CreateDocModal = () => {
 		setTitle('');
 		setIsUnique(false);
 		closeCreateModalHandler();
+		closeMenuHandler();
 	};
 
 	const cancelHandler = () => {
