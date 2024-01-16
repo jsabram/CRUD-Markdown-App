@@ -55,7 +55,7 @@ const CreateDocModal = () => {
 	return (
 		<Modal
 			title='Create a document'
-			message={`Create a name for the new document. It must be unique and consist of maximum 15 characters. ${
+			message={`Document name must be unique, without any special characters and consist of maximum 15 characters. ${
 				isLaptop
 					? 'You can later change it by double clicking on the active tab name.'
 					: ''

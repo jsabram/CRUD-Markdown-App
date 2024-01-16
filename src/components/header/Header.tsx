@@ -38,7 +38,7 @@ const Header = () => {
 	const saveChangesHandler = () => {
 		dispatch(setSavedValue(editorValue));
 		updateDocBody(openDoc, editorValue);
-	};
+			};
 
 	const downloadFileHandler = () => {
 		const downloadedFile = userDocs.find((doc) => doc.id === openDoc);

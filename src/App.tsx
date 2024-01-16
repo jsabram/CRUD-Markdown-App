@@ -7,11 +7,14 @@ import { useTheme } from './hooks/useTheme';
 import { useFirestore } from './hooks/useFirestore';
 import { setOpenDoc, setActiveDocs } from './store/root-slice';
 import { AppContext } from './context/AppContext';
+import { ToastContainer } from 'react-toastify';
 import Header from './components/header/Header';
 import Main from './components/main/Main';
 import AsideMenu from './components/aside/AsideMenu';
 import DeleteDocModal from './components/modal/DeleteDocModal';
 import CreateDocModal from './components/modal/CreateDocModal';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
 	const {
@@ -64,6 +67,7 @@ const App = () => {
 			>
 				<Header />
 				<Main />
+
 				<AsideMenu />
 				{isDeleteModalOpen &&
 					ReactDOM.createPortal(
@@ -76,6 +80,7 @@ const App = () => {
 						document.getElementById('modal')!
 					)}
 			</div>
+			<ToastContainer />
 		</>
 	);
 };

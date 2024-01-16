@@ -17,6 +17,7 @@ import {
 	Timestamp,
 } from 'firebase/firestore';
 import { formattedDate } from '../utils/date';
+import { toast } from 'react-toastify';
 
 export const useFirestore = () => {
 	const { storedId, activeDocs } = useAppSelector((state) => ({
@@ -59,7 +60,8 @@ export const useFirestore = () => {
 	};
 
 	const getDocumentsList = async () => {
-		let userId = '';
+		try {
+			let userId = '';
 
 		if (localStorage.getItem('userId')) {
 			userId = localStorage.getItem('userId')!;
@@ -103,68 +105,99 @@ export const useFirestore = () => {
 				docs: formattedDocuments,
 			})
 		);
+		} catch {
+			toast('The application failed loading data from the server. Please try again later.')
+		}
 	};
 
 	const createDocument = async (title: string) => {
-		const { userCollection } = getUserCollection(storedId);
-		let newId = nanoid();
+		try {
+			const { userCollection } = getUserCollection(storedId);
+			let newId = nanoid();
 
-		if (userCollection !== null) {
-			const docRef = await addDoc(userCollection, {
-				id: newId,
-				timestamp: Timestamp.now(),
-				createdAt: formattedDate,
-				title,
-				body: '',
-			});
+			if (userCollection !== null) {
+				const docRef = await addDoc(userCollection, {
+					id: newId,
+					timestamp: Timestamp.now(),
+					createdAt: formattedDate,
+					title,
+					body: '',
+				});
 
-			dispatch(setOpenDoc(docRef.id));
-			dispatch(
-				setActiveDocs([
-					{
-						id: docRef.id,
-						title,
-					},
-					...activeDocs,
-				])
+				dispatch(setOpenDoc(docRef.id));
+				dispatch(
+					setActiveDocs([
+						{
+							id: docRef.id,
+							title,
+						},
+						...activeDocs,
+					])
+				);
+
+				getDocumentsList();
+			}
+		} catch {
+			toast(
+				'An error occured while creating the file. Please try again later.'
 			);
-
-			getDocumentsList();
 		}
 	};
 
 	const updateDocBody = async (id: string, updatedContent: string) => {
-		const { userCollection } = getUserCollection(storedId);
+		try {
+			const { userCollection } = getUserCollection(storedId);
 
-		if (userCollection !== null) {
-			const docToUpdate = doc(userCollection, id);
-			await updateDoc(docToUpdate, { body: updatedContent });
-			getDocumentsList();
+			if (userCollection !== null) {
+				const docToUpdate = doc(userCollection, id);
+				await updateDoc(docToUpdate, { body: updatedContent });
+				getDocumentsList();
+
+				toast('Document saved!');
+			}
+		} catch {
+			toast('An error occured while saving the file. Please try again later.');
 		}
 	};
 
 	const updateDocTitle = async (id: string, updatedTitle: string) => {
-		const { userCollection } = getUserCollection(storedId);
+		try {
+			const { userCollection } = getUserCollection(storedId);
 
-		if (userCollection !== null) {
-			const docToUpdate = doc(userCollection, id);
-			await updateDoc(docToUpdate, { title: updatedTitle });
-			getDocumentsList();
+			if (userCollection !== null) {
+				const docToUpdate = doc(userCollection, id);
+				await updateDoc(docToUpdate, { title: updatedTitle });
+				getDocumentsList();
+
+				toast('Title changed!');
+			}
+		} catch {
+			toast(
+				'An error occured while changing the title. Please try again later.'
+			);
 		}
 	};
 
 	const deleteDocument = async (id: string) => {
-		const { userCollection } = getUserCollection(storedId);
+		try {
+			const { userCollection } = getUserCollection(storedId);
 
-		if (userCollection !== null) {
-			const docToDelete = doc(userCollection, id);
-			await deleteDoc(docToDelete);
+			if (userCollection !== null) {
+				const docToDelete = doc(userCollection, id);
+				await deleteDoc(docToDelete);
 
-			const updatedArray = activeDocs.filter((doc) => doc.id !== id);
-			dispatch(setActiveDocs(updatedArray));
-			dispatch(setOpenDoc(''));
+				const updatedArray = activeDocs.filter((doc) => doc.id !== id);
+				dispatch(setActiveDocs(updatedArray));
+				dispatch(setOpenDoc(''));
 
-			getDocumentsList();
+				getDocumentsList();
+
+				toast('Document deleted!');
+			}
+		} catch {
+			toast(
+				'An error occured while deleting the file. Please try again later.'
+			);
 		}
 	};
 
