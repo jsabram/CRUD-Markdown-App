@@ -1,15 +1,17 @@
 import { useContext } from 'react';
 import { useAppSelector } from '../../store/typed-hooks';
-import { AppContext } from '../../context/AppContext';
 import { useFirestore } from '../../hooks/useFirestore';
+import { AppContext } from '../../context/AppContext';
 import Modal from './Modal';
 import ModalButtons from './ModalButtons';
 
 const DeleteDocModal = () => {
-	const openDoc = useAppSelector((state) => state.openDoc);
-	const userDoc = useAppSelector((state) => state.userDocs);
+	const { openDoc, userDocs } = useAppSelector((state) => ({
+		openDoc: state.openDoc,
+		userDocs: state.userDocs,
+	}));
 
-	const docToDelete = userDoc.find((doc) => doc.id === openDoc);
+	const docToDelete = userDocs.find((doc) => doc.id === openDoc);
 
 	const { closeDeleteModalHandler } = useContext(AppContext);
 

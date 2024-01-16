@@ -67,7 +67,7 @@ const AsideMenu = () => {
 				<IconButton className='relative' onClick={viewOptionsHandler}>
 					<ViewOptions />
 				</IconButton>
-			</div>{' '}
+			</div>
 		</aside>
 	);
 };

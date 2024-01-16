@@ -1,11 +1,11 @@
 import { useState, useRef } from 'react';
 import { useAppSelector } from '../../store/typed-hooks';
 import { useDispatch } from 'react-redux';
-import { useMediaQuery } from '@uidotdev/usehooks';
 import { useFirestore } from '../../hooks/useFirestore';
+import { useMediaQuery } from '@uidotdev/usehooks';
+import { toast } from 'react-toastify';
 import { setActiveDocs, setOpenDoc } from '../../store/root-slice';
 import { LinkProps } from '../../@types/component-types';
-import { toast } from 'react-toastify';
 import DocumentIcon from '../../assets/icons/icon-components/DocumentIcon';
 import IconButton from '../reusable/IconButton';
 import CloseIcon from '../../assets/icons/icon-components/CloseIcon';

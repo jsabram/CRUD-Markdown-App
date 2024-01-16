@@ -1,9 +1,9 @@
-import { useState, useContext, useRef } from 'react';
+import { useState, useRef, useContext } from 'react';
 import { useAppSelector } from '../../store/typed-hooks';
-import { useMediaQuery } from '@uidotdev/usehooks';
 import { useFirestore } from '../../hooks/useFirestore';
-import { AppContext } from '../../context/AppContext';
+import { useMediaQuery } from '@uidotdev/usehooks';
 import { toast } from 'react-toastify';
+import { AppContext } from '../../context/AppContext';
 import Modal from './Modal';
 import ModalButtons from './ModalButtons';
 

@@ -1,7 +1,6 @@
-import { useContext, useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import { useAppSelector } from '../../store/typed-hooks';
 import { AppContext } from '../../context/AppContext';
-import SectionHeader from '../reusable/SectionHeader';
 import { unified } from 'unified';
 import {
 	remarkDefinitionList,
@@ -11,6 +10,7 @@ import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import remarkGfm from 'remark-gfm';
 import rehypeStringify from 'rehype-stringify';
+import SectionHeader from '../reusable/SectionHeader';
 
 const Preview = () => {
 	const { selectedView } = useContext(AppContext);

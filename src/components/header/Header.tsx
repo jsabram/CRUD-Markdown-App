@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { useAppSelector } from '../../store/typed-hooks';
 import { useDispatch } from 'react-redux';
-import { setSavedValue } from '../../store/root-slice';
 import { useFirestore } from '../../hooks/useFirestore';
+import { setSavedValue } from '../../store/root-slice';
 import { AppContext } from '../../context/AppContext';
 import LoadingBar from './LoadingBar';
 import IconButton from '../reusable/IconButton';

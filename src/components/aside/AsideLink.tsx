@@ -14,8 +14,6 @@ const AsideLink: React.FC<LinkProps> = ({ id, title, docName }) => {
 	const dispatch = useDispatch();
 
 	const selectDocumentHandler = () => {
-		closeMenuHandler();
-
 		dispatch(setOpenDoc(id));
 		dispatch(
 			updateActiveDocs({
@@ -23,6 +21,8 @@ const AsideLink: React.FC<LinkProps> = ({ id, title, docName }) => {
 				title: docName,
 			})
 		);
+
+		closeMenuHandler();
 	};
 
 	return (
@@ -38,7 +38,7 @@ const AsideLink: React.FC<LinkProps> = ({ id, title, docName }) => {
 		>
 			<div>
 				<DocumentIcon className='link-icon' />
-			</div>{' '}
+			</div>
 			<div className='ms-3'>
 				<h3>{title}</h3>
 				<p className='text-white'>{docName}.md</p>
