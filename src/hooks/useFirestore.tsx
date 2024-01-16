@@ -220,16 +220,14 @@ export const useFirestore = () => {
 				const indexToDelete = activeDocs.findIndex((doc) => doc.id === id);
 
 				dispatch(setActiveDocs(updatedArray));
-				dispatch(setOpenDoc(''));
 
-
-				// if (updatedArray[indexToDelete]) {
-				// 	dispatch(setOpenDoc(updatedArray[indexToDelete].id));
-				// } else if (updatedArray[indexToDelete - 1]) {
-				// 	dispatch(setOpenDoc(updatedArray[indexToDelete - 1].id));
-				// } else {
-				// 	dispatch(setOpenDoc(''));
-				// }
+				if (updatedArray[indexToDelete]) {
+					dispatch(setOpenDoc(updatedArray[indexToDelete].id));
+				} else if (updatedArray[indexToDelete - 1]) {
+					dispatch(setOpenDoc(updatedArray[indexToDelete - 1].id));
+				} else {
+					dispatch(setOpenDoc(''));
+				}
 
 				getDocumentsList();
 
