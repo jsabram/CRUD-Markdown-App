@@ -279,6 +279,7 @@ path {
 .preview blockquote {
 	background-color: var(--light-gray);
 	color: var(--dark-gray-500);
+	text-wrap: wrap;
 }
 
 .preview pre::before,

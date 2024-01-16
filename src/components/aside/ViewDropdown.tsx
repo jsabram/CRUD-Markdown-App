@@ -7,7 +7,6 @@ const ViewDropdown = () => {
 
 	const selectViewHandler: ChangeViewFn = (value) => {
 		changeViewHandler(value);
-		console.log(value);
 	};
 
 	const btnClasses =
@@ -23,6 +22,10 @@ const ViewDropdown = () => {
 				role='button'
 				className='py-2 px-5 outline-none transition-colors duration-300 hover:text-primary focus:text-primary'
 				onClick={() => selectViewHandler('editor')}
+				onKeyDown={(e) => {
+					e.key === 'Enter' && selectViewHandler('editor');
+				}}
+				tabIndex={0}
 			>
 				Editor
 			</p>
@@ -30,6 +33,10 @@ const ViewDropdown = () => {
 				role='button'
 				className='py-2 px-5 outline-none transition-colors duration-300 hover:text-primary focus:text-primary'
 				onClick={() => selectViewHandler('preview')}
+				onKeyDown={(e) => {
+					e.key === 'Enter' && selectViewHandler('preview');
+				}}
+				tabIndex={0}
 			>
 				Preview
 			</p>
@@ -37,6 +44,10 @@ const ViewDropdown = () => {
 				role='button'
 				className={`${btnClasses} hidden md:block`}
 				onClick={() => selectViewHandler('comparison')}
+				onKeyDown={(e) => {
+					e.key === 'Enter' && selectViewHandler('comparison');
+				}}
+				tabIndex={0}
 			>
 				Comparison
 			</p>

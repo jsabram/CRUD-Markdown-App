@@ -62,9 +62,9 @@ const NavLink: React.FC<LinkProps> = ({ id, docName }) => {
 		if (inputRef.current) {
 			if (specialCharacters.test(inputRef.current.value)) {
 				inputRef.current.value = inputRef.current.value.slice(0, -1);
-				
-				toast.warn('Special characters are not allowed')
-				toast.clearWaitingQueue()
+
+				toast.warn('Special characters are not allowed');
+				toast.clearWaitingQueue();
 			} else {
 				setEditedName(inputRef.current.value);
 			}
@@ -94,8 +94,12 @@ const NavLink: React.FC<LinkProps> = ({ id, docName }) => {
 			className='nav-link link-element overflow-scroll bg-darkGray200 border-l-[1px] transition-colors duration-300 md:border-textGray200 md:overflow-visible lg:px-5'
 		>
 			<div
-				className='document-link cursor-pointer'
+				className='document-link outline-none cursor-pointer'
 				onClick={selectDocumentHandler}
+				onKeyDown={(e) => {
+					e.key === 'Enter' && selectDocumentHandler();
+				}}
+				tabIndex={0}
 			>
 				<DocumentIcon className='link-icon' />
 			</div>

@@ -24,6 +24,10 @@ const AsideLink: React.FC<LinkProps> = ({ id, title, docName }) => {
 				id === openDoc && 'bg-darkGray100'
 			}`}
 			onClick={selectDocumentHandler}
+			onKeyDown={(e) => {
+				e.key === 'Enter' && selectDocumentHandler();
+			}}
+			tabIndex={0}
 		>
 			<div>
 				<DocumentIcon className='link-icon' />
