@@ -11,14 +11,15 @@ const Nav = () => {
 
 	const isMobile = useMediaQuery('(max-width: 768px)');
 	const isTablet = useMediaQuery('(min-width: 768px)');
+	const isDesktop = useMediaQuery('(min-width: 1200px)');
 
 	useEffect(() => {
 		const activeTab = document.getElementById(openDoc);
 
-		if (activeTab) {
+		if (activeTab && isDesktop) {
 			activeTab.scrollIntoView({ behavior: 'smooth' });
 		}
-	}, [openDoc]);
+	}, [openDoc, isDesktop]);
 
 	return (
 		<nav className='nav w-full pe-4 overflow-y-hidden overflow-x-scroll ]'>

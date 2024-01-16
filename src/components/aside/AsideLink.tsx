@@ -1,14 +1,21 @@
+import { useContext } from 'react';
 import { useAppSelector } from '../../store/typed-hooks';
 import { useDispatch } from 'react-redux';
 import { setOpenDoc, updateActiveDocs } from '../../store/root-slice';
+import { AppContext } from '../../context/AppContext';
 import { LinkProps } from '../../@types/component-types';
 import DocumentIcon from '../../assets/icons/icon-components/DocumentIcon';
 
 const AsideLink: React.FC<LinkProps> = ({ id, title, docName }) => {
 	const openDoc = useAppSelector((state) => state.openDoc);
+
+	const { closeMenuHandler } = useContext(AppContext);
+
 	const dispatch = useDispatch();
 
 	const selectDocumentHandler = () => {
+		closeMenuHandler();
+
 		dispatch(setOpenDoc(id));
 		dispatch(
 			updateActiveDocs({
