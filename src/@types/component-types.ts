@@ -103,6 +103,7 @@ interface ActiveDocumentObj {
 }
 
 export interface StateObj {
+	appState: 'success' | 'loading' | 'error';
 	editorValue: string;
 	savedValue: string;
 	userId: string;

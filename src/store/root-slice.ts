@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { StateObj } from '../@types/component-types';
 
 const initialState: StateObj = {
+	appState: 'loading',
 	editorValue: '',
 	savedValue: '',
 	userId: '',
@@ -14,6 +15,9 @@ const RootSlice = createSlice({
 	name: 'root',
 	initialState,
 	reducers: {
+		setAppState: (state, action) => {
+			state.appState = action.payload;
+		},
 		setEditorValue: (state, action) => {
 			state.editorValue = action.payload;
 		},
@@ -48,11 +52,12 @@ const RootSlice = createSlice({
 });
 
 export const {
+	setAppState,
 	setEditorValue,
 	setSavedValue,
 	setUserData,
 	setOpenDoc,
 	setActiveDocs,
-	updateActiveDocs
+	updateActiveDocs,
 } = RootSlice.actions;
 export default RootSlice.reducer;

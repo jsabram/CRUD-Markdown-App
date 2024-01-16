@@ -1,6 +1,11 @@
 import { useAppSelector } from '../store/typed-hooks';
 import { useDispatch } from 'react-redux';
-import { setOpenDoc, setUserData, setActiveDocs } from '../store/root-slice';
+import {
+	setAppState,
+	setOpenDoc,
+	setUserData,
+	setActiveDocs,
+} from '../store/root-slice';
 import { nanoid } from 'nanoid';
 import { db } from '../config/firebase';
 import {
@@ -23,7 +28,6 @@ export const useFirestore = () => {
 	const { storedId, activeDocs } = useAppSelector((state) => ({
 		storedId: state.userId,
 		activeDocs: state.activeDocs,
-		userDocs: state.userDocs,
 	}));
 
 	const dispatch = useDispatch();
@@ -61,6 +65,8 @@ export const useFirestore = () => {
 
 	const getDocumentsList = async () => {
 		try {
+			dispatch(setAppState('loading'));
+
 			let userId = '';
 
 			if (localStorage.getItem('userId')) {
@@ -99,6 +105,8 @@ export const useFirestore = () => {
 			const user = await getDoc(userRef);
 			const storedUserId = user.id;
 
+			dispatch(setAppState('success'));
+
 			dispatch(
 				setUserData({
 					id: storedUserId,
@@ -106,6 +114,8 @@ export const useFirestore = () => {
 				})
 			);
 		} catch {
+			dispatch(setAppState('error'));
+
 			toast.error(
 				'The application failed loading data from the server. Please try again later.'
 			);

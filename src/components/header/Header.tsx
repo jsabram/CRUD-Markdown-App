@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { setSavedValue } from '../../store/root-slice';
 import { useFirestore } from '../../hooks/useFirestore';
 import { AppContext } from '../../context/AppContext';
+import LoadingBar from './LoadingBar';
 import IconButton from '../reusable/IconButton';
 import ColoredButton from '../reusable/ColoredButton';
 import MenuIcon from '../../assets/icons/menu-icon.svg';
@@ -14,14 +15,19 @@ import DownloadIcon from '../../assets/icons/download-icon.svg';
 import Nav from '../nav/Nav';
 
 const Header = () => {
-	const { editorValue, savedValue, openDoc, userDocs } = useAppSelector(
-		(state) => ({
-			editorValue: state.editorValue,
-			savedValue: state.savedValue,
-			openDoc: state.openDoc,
-			userDocs: state.userDocs,
-		})
-	);
+	const {
+		appState,
+		editorValue,
+		savedValue,
+		openDoc,
+		userDocs,
+	} = useAppSelector((state) => ({
+		appState: state.appState,
+		editorValue: state.editorValue,
+		savedValue: state.savedValue,
+		openDoc: state.openDoc,
+		userDocs: state.userDocs,
+	}));
 
 	const { isMenuOpen, toggleMenuHandler, openDeleteModalHandler } = useContext(
 		AppContext
@@ -38,7 +44,7 @@ const Header = () => {
 	const saveChangesHandler = () => {
 		dispatch(setSavedValue(editorValue));
 		updateDocBody(openDoc, editorValue);
-			};
+	};
 
 	const downloadFileHandler = () => {
 		const downloadedFile = userDocs.find((doc) => doc.id === openDoc);
@@ -65,6 +71,7 @@ const Header = () => {
 				isMenuOpen ? 'translate-x-[250px]' : 'translate-x-0'
 			}`}
 		>
+			{appState === 'loading' && <LoadingBar />}
 			<div className='flex items-center'>
 				<button
 					className='flex justify-center items-center h-[55px] w-[55px] bg-darkGray100 outline-none transition-colors duration-300 hover:bg-primary focus:bg-primary  lg:h-[70px] lg:w-[70px]'
