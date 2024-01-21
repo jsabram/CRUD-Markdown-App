@@ -35,7 +35,7 @@ const CreateDocModal = () => {
 
 	const nameHandler = () => {
 		if (inputRef.current) {
-			const specialCharacters = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+			const specialCharacters = /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/;
 
 			if (specialCharacters.test(inputRef.current.value)) {
 				inputRef.current.value = inputRef.current.value.slice(0, -1);
