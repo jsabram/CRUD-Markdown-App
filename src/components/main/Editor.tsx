@@ -63,7 +63,7 @@ const Editor = () => {
 			return;
 		}
 		
-	}, [userDocs, openDoc]);
+	}, [userDocs, openDoc, dispatch]);
 
 	return (
 		<section

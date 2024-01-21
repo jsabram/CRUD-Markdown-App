@@ -57,14 +57,7 @@ const App = () => {
 
 			dispatch(setActiveDocs(formattedArray));
 		}
-	}, [
-		changeViewHandler,
-		checkThemeHandler,
-		dispatch,
-		getDocumentsList,
-		isTablet,
-		toggleThemeHandler,
-	]);
+	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
 	return (
 		<>
