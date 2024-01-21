@@ -28,7 +28,7 @@ Markdown Editor is an in-browser CRUD application that enables you to create, ed
 - React.js
 - Redux Toolkit
 - Firestore Database
-- **Other:** [nanoid](https://www.npmjs.com/package/nanoid), [React Toastify](https://www.npmjs.com/package/react-toastify), [Streamline Icons](https://home.streamlinehq.com/)
+- **Other:** [react-markdown](https://github.com/remarkjs/react-markdown), [nanoid](https://www.npmjs.com/package/nanoid), [React Toastify](https://www.npmjs.com/package/react-toastify), [Streamline Icons](https://home.streamlinehq.com/)
 
 ## Getting started
 
