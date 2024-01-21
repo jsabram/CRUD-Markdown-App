@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext  } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useAppSelector } from '../../store/typed-hooks';
 import { useDispatch } from 'react-redux';
 import { setEditorValue, setSavedValue } from '../../store/root-slice';
@@ -62,7 +62,6 @@ const Editor = () => {
 		} else {
 			return;
 		}
-		
 	}, [userDocs, openDoc, dispatch]);
 
 	return (

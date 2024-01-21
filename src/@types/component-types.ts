@@ -31,13 +31,9 @@ export interface AppContextProps {
 	closeCreateModalHandler: VoidFn;
 }
 
-// Resizeable
-
 export interface ResizableBoxProps extends ChildrenProps {
 	direction: 'horizontal';
 }
-
-// Resuable Components
 
 interface ButtonProps {
 	onClick: VoidFn;
@@ -60,16 +56,11 @@ export interface SectionHeaderProps {
 	sectionTitle: string;
 }
 
-// Aside Menu + MavLink?
-
 export interface LinkProps {
 	id: string;
 	title?: string;
 	docName: string;
 }
-
-// Modal
-
 export interface ModalMessageProps extends ChildrenProps {
 	title: string;
 	message: string;
@@ -87,8 +78,6 @@ export interface ModalButtonsProps {
 }
 
 export interface ModalProps extends ModalMessageProps, ModalBackgroundProps {}
-
-// store
 
 interface DocumentObj {
 	id: string;
