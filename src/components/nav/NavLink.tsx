@@ -57,7 +57,7 @@ const NavLink: React.FC<LinkProps> = ({ id, docName }) => {
 	};
 
 	const updateNameHandler = () => {
-		const specialCharacters = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+		const specialCharacters = /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/;
 
 		if (inputRef.current) {
 			if (specialCharacters.test(inputRef.current.value)) {
