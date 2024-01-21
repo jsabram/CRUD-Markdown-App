@@ -57,7 +57,14 @@ const App = () => {
 
 			dispatch(setActiveDocs(formattedArray));
 		}
-	}, []);
+	}, [
+		changeViewHandler,
+		checkThemeHandler,
+		dispatch,
+		getDocumentsList,
+		isTablet,
+		toggleThemeHandler,
+	]);
 
 	return (
 		<>
